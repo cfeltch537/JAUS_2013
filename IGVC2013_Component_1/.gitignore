@@ -1,0 +1,6 @@
+/bin
+/Build
+/lib
+
+*.class
+*.bin

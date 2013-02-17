@@ -1,0 +1,1025 @@
+package src.urn_TestCOPServiceDef_1_0.Messages;
+
+import framework.messages.Message;
+import framework.JausUtils;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.util.BitSet;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class ReportVelocityCommand extends Message
+{
+	protected static Logger logger = Logger.getLogger("framework.logger");
+	public static int ID = 0x4415;
+	
+	public static class  AppHeader
+	{
+		public static class  HeaderRec
+		{
+		
+			protected AppHeader m_parent;
+			protected int m_MessageID;
+		
+			public void setParent(AppHeader parent)
+			{
+				m_parent = parent;
+			}
+			
+			public void setParentPresenceVector()
+			{
+				if(m_parent != null )
+				{
+					m_parent.setParentPresenceVector();
+				}
+			}
+			
+			public int getMessageID()
+			{
+				return m_MessageID;
+			}
+			
+			public void setMessageID(int value)
+			{
+				m_MessageID = value;
+				setParentPresenceVector();
+			}
+			
+			/**
+			 * Returns the number of bytes the used data members of the class occupies
+			 * in the buffer. This is not the number of bytes the data type occupies in 
+			 * Java, but the bytes expected on the wire.
+			 * 
+			 * @return
+			 */
+			public long getSize()
+			{
+				long size = 0;
+				
+				size += JausUtils.getNumBytes("short");
+				
+				return size;
+			}
+			
+			public void encode(ByteBuffer bytes, int pos)
+			{
+				
+				if (bytes.array() == null)
+				{
+					return;
+				}
+				
+				if(bytes.order() != ByteOrder.LITTLE_ENDIAN)
+				{
+					bytes.order(ByteOrder.LITTLE_ENDIAN);
+				}
+				
+				bytes.putShort(pos, (short) m_MessageID);
+				pos += JausUtils.getNumBytes("short");
+			}
+			
+			public void decode(ByteBuffer bytes, int pos)
+			{
+				
+				if (bytes.array() == null)
+				{
+					return;
+				}
+				if(bytes.order() != ByteOrder.LITTLE_ENDIAN)
+				{
+					bytes.order(ByteOrder.LITTLE_ENDIAN);
+				}
+				
+				m_MessageID = bytes.getShort(pos) & 0xffff;
+				pos += JausUtils.getNumBytes("short");
+			}
+			
+			public ReportVelocityCommand.AppHeader.HeaderRec assign(HeaderRec value)
+			{
+				m_MessageID = value.m_MessageID;
+				
+				return this;
+			}
+			
+			public boolean isEqual(HeaderRec value)
+			{
+				if (m_MessageID != value.getMessageID())
+				{
+					return false;
+				}
+				
+				return true;
+			}
+			
+			public boolean notEquals(HeaderRec value)
+			{
+				return !this.isEqual(value);
+			}
+			
+			public HeaderRec()
+			{
+				m_parent = null;
+				m_MessageID = 0x4415;
+			}
+			
+			public HeaderRec(HeaderRec value)
+			{
+				/// Initiliaze the protected variables
+				m_parent = null;
+				m_MessageID = 0x4415;
+				
+				/// Copy the values
+				m_MessageID = value.m_MessageID;
+			}
+			
+			public void finalize()
+			{
+			}
+			
+		}
+	
+	
+		protected HeaderRec m_HeaderRec;
+	
+		public ReportVelocityCommand.AppHeader.HeaderRec getHeaderRec()
+		{
+			return m_HeaderRec;
+		}
+		
+		public void setHeaderRec(HeaderRec value)
+		{
+			m_HeaderRec = value;
+			setParentPresenceVector();
+		}
+		
+		public void setParentPresenceVector()
+		{
+			// Nothing needed here, placeholder function
+		}
+		
+		/**
+		 * Returns the number of bytes the used data members of the class occupies
+		 * in the buffer. This is not the number of bytes the data type occupies in 
+		 * Java, but the bytes expected on the wire.
+		 * 
+		 * @return
+		 */
+		public long getSize()
+		{
+			long size = 0;
+			
+			size += m_HeaderRec.getSize();
+			
+			return size;
+		}
+		
+		public void encode(ByteBuffer bytes, int pos)
+		{
+			
+			if (bytes.array() == null)
+			{
+				return;
+			}
+			
+			if(bytes.order() != ByteOrder.LITTLE_ENDIAN)
+			{
+				bytes.order(ByteOrder.LITTLE_ENDIAN);
+			}
+			
+			m_HeaderRec.encode(bytes, pos);
+			pos += m_HeaderRec.getSize();
+		}
+		
+		public void decode(ByteBuffer bytes, int pos)
+		{
+			
+			if (bytes.array() == null)
+			{
+				return;
+			}
+			if(bytes.order() != ByteOrder.LITTLE_ENDIAN)
+			{
+				bytes.order(ByteOrder.LITTLE_ENDIAN);
+			}
+			
+			m_HeaderRec.decode(bytes, pos);
+			pos += m_HeaderRec.getSize();
+		}
+		
+		public ReportVelocityCommand.AppHeader assign(AppHeader value)
+		{
+			m_HeaderRec = value.m_HeaderRec;
+			m_HeaderRec.setParent(this);
+			
+			return this;
+		}
+		
+		public boolean isEqual(AppHeader value)
+		{
+			if (!m_HeaderRec.isEqual(value.getHeaderRec()))
+			{
+				return false;
+			}
+			return true;
+		}
+		
+		public boolean notEquals(AppHeader value)
+		{
+			return !this.isEqual(value);
+		}
+		
+		public AppHeader()
+		{
+			m_HeaderRec = new HeaderRec();
+			m_HeaderRec.setParent(this);
+		}
+		
+		public AppHeader(AppHeader value)
+		{
+			/// Initiliaze the protected variables
+			m_HeaderRec = new HeaderRec();
+			m_HeaderRec.setParent(this);
+			
+			/// Copy the values
+			m_HeaderRec = value.m_HeaderRec;
+			m_HeaderRec.setParent(this);
+		}
+		
+		public void finalize()
+		{
+		}
+		
+	}
+	public static class  Body
+	{
+		public static class  VelocityCommandRec
+		{
+		
+			protected Body m_parent;
+			protected BitSet m_PresenceVector;
+			protected short m_PresenceVectorTemp;
+			protected short m_CommandType;
+			protected long m_Velocity_X;
+			protected long m_Velocity_Y;
+			protected long m_Velocity_Z;
+			protected int m_RollRate;
+			protected int m_PitchRate;
+			protected int m_YawRate;
+		
+			public void setParent(Body parent)
+			{
+				m_parent = parent;
+			}
+			
+			public void setParentPresenceVector()
+			{
+				if(m_parent != null )
+				{
+					m_parent.setParentPresenceVector();
+				}
+			}
+			
+			public short getPresenceVector()
+			{
+				return m_PresenceVectorTemp;
+			}
+			
+			protected void setPresenceVector(int index)
+			{
+				
+				m_PresenceVector.set(index);
+				m_PresenceVectorTemp = (short) JausUtils.getPVInt(m_PresenceVector);
+			}
+			
+			public boolean checkPresenceVector(int index)
+			{
+				
+				return m_PresenceVector.get(index);
+			}
+			
+			public short getCommandType()
+			{
+				return m_CommandType;
+			}
+			
+			public void setCommandType(short value)
+			{
+				if ((value == 1) || (value == 2) || (value == 0) || (value == 3))
+				{
+					m_CommandType = value;
+					setParentPresenceVector();
+				}
+				return;
+			}
+			
+			public boolean isVelocity_XValid()
+			{
+				if (checkPresenceVector(0))
+				{
+					return true;
+				}
+				return false;
+			}
+			
+			public double getVelocity_X()
+			{
+				double value;
+				
+				double scaleFactor = ( 327.67 - -327.68 ) / 4.294967295E9;
+				double bias = -327.68;
+				
+				value = m_Velocity_X * scaleFactor + bias;
+				
+				return value;
+			}
+			
+			public void setVelocity_X(double value)
+			{
+				if ((value >= -327.68) && (value <= 327.67))
+				{
+					double scaleFactor = ( 327.67 - -327.68 ) / 4.294967295E9;
+					double bias = -327.68;
+					
+					m_Velocity_X= (long)((value - bias) / scaleFactor);
+					setPresenceVector(0);
+					setParentPresenceVector();
+				}
+				return;
+			}
+			
+			public boolean isVelocity_YValid()
+			{
+				if (checkPresenceVector(1))
+				{
+					return true;
+				}
+				return false;
+			}
+			
+			public double getVelocity_Y()
+			{
+				double value;
+				
+				double scaleFactor = ( 327.67 - -327.68 ) / 4.294967295E9;
+				double bias = -327.68;
+				
+				value = m_Velocity_Y * scaleFactor + bias;
+				
+				return value;
+			}
+			
+			public void setVelocity_Y(double value)
+			{
+				if ((value >= -327.68) && (value <= 327.67))
+				{
+					double scaleFactor = ( 327.67 - -327.68 ) / 4.294967295E9;
+					double bias = -327.68;
+					
+					m_Velocity_Y= (long)((value - bias) / scaleFactor);
+					setPresenceVector(1);
+					setParentPresenceVector();
+				}
+				return;
+			}
+			
+			public boolean isVelocity_ZValid()
+			{
+				if (checkPresenceVector(2))
+				{
+					return true;
+				}
+				return false;
+			}
+			
+			public double getVelocity_Z()
+			{
+				double value;
+				
+				double scaleFactor = ( 327.67 - -327.68 ) / 4.294967295E9;
+				double bias = -327.68;
+				
+				value = m_Velocity_Z * scaleFactor + bias;
+				
+				return value;
+			}
+			
+			public void setVelocity_Z(double value)
+			{
+				if ((value >= -327.68) && (value <= 327.67))
+				{
+					double scaleFactor = ( 327.67 - -327.68 ) / 4.294967295E9;
+					double bias = -327.68;
+					
+					m_Velocity_Z= (long)((value - bias) / scaleFactor);
+					setPresenceVector(2);
+					setParentPresenceVector();
+				}
+				return;
+			}
+			
+			public boolean isRollRateValid()
+			{
+				if (checkPresenceVector(3))
+				{
+					return true;
+				}
+				return false;
+			}
+			
+			public double getRollRate()
+			{
+				double value;
+				
+				double scaleFactor = ( 32.767 - -32.768 ) / 65535.0;
+				double bias = -32.768;
+				
+				value = m_RollRate * scaleFactor + bias;
+				
+				return value;
+			}
+			
+			public void setRollRate(double value)
+			{
+				if ((value >= -32.768) && (value <= 32.767))
+				{
+					double scaleFactor = ( 32.767 - -32.768 ) / 65535.0;
+					double bias = -32.768;
+					
+					m_RollRate= (int)((value - bias) / scaleFactor);
+					setPresenceVector(3);
+					setParentPresenceVector();
+				}
+				return;
+			}
+			
+			public boolean isPitchRateValid()
+			{
+				if (checkPresenceVector(4))
+				{
+					return true;
+				}
+				return false;
+			}
+			
+			public double getPitchRate()
+			{
+				double value;
+				
+				double scaleFactor = ( 32.767 - -32.768 ) / 65535.0;
+				double bias = -32.768;
+				
+				value = m_PitchRate * scaleFactor + bias;
+				
+				return value;
+			}
+			
+			public void setPitchRate(double value)
+			{
+				if ((value >= -32.768) && (value <= 32.767))
+				{
+					double scaleFactor = ( 32.767 - -32.768 ) / 65535.0;
+					double bias = -32.768;
+					
+					m_PitchRate= (int)((value - bias) / scaleFactor);
+					setPresenceVector(4);
+					setParentPresenceVector();
+				}
+				return;
+			}
+			
+			public boolean isYawRateValid()
+			{
+				if (checkPresenceVector(5))
+				{
+					return true;
+				}
+				return false;
+			}
+			
+			public double getYawRate()
+			{
+				double value;
+				
+				double scaleFactor = ( 32.767 - -32.768 ) / 65535.0;
+				double bias = -32.768;
+				
+				value = m_YawRate * scaleFactor + bias;
+				
+				return value;
+			}
+			
+			public void setYawRate(double value)
+			{
+				if ((value >= -32.768) && (value <= 32.767))
+				{
+					double scaleFactor = ( 32.767 - -32.768 ) / 65535.0;
+					double bias = -32.768;
+					
+					m_YawRate= (int)((value - bias) / scaleFactor);
+					setPresenceVector(5);
+					setParentPresenceVector();
+				}
+				return;
+			}
+			
+			/**
+			 * Returns the number of bytes the used data members of the class occupies
+			 * in the buffer. This is not the number of bytes the data type occupies in 
+			 * Java, but the bytes expected on the wire.
+			 * 
+			 * @return
+			 */
+			public long getSize()
+			{
+				long size = 0;
+				
+				size += JausUtils.getNumBytes("byte");
+				size += JausUtils.getNumBytes("byte");
+				if (checkPresenceVector(0))
+				{
+					size += JausUtils.getNumBytes("int");
+				}
+				if (checkPresenceVector(1))
+				{
+					size += JausUtils.getNumBytes("int");
+				}
+				if (checkPresenceVector(2))
+				{
+					size += JausUtils.getNumBytes("int");
+				}
+				if (checkPresenceVector(3))
+				{
+					size += JausUtils.getNumBytes("short");
+				}
+				if (checkPresenceVector(4))
+				{
+					size += JausUtils.getNumBytes("short");
+				}
+				if (checkPresenceVector(5))
+				{
+					size += JausUtils.getNumBytes("short");
+				}
+				
+				return size;
+			}
+			
+			public void encode(ByteBuffer bytes, int pos)
+			{
+				
+				if (bytes.array() == null)
+				{
+					return;
+				}
+				
+				if(bytes.order() != ByteOrder.LITTLE_ENDIAN)
+				{
+					bytes.order(ByteOrder.LITTLE_ENDIAN);
+				}
+				
+				try
+				{
+					short m_PresenceVectorTemp = (short) JausUtils.getPVInt(m_PresenceVector);
+				bytes.put(pos, (byte) m_PresenceVectorTemp);
+				pos += JausUtils.getNumBytes("byte");
+				}
+				catch(Exception e)
+				{
+					logger.log(Level.SEVERE, null, e);
+				}
+				bytes.put(pos, (byte) m_CommandType);
+				pos += JausUtils.getNumBytes("byte");
+				if (checkPresenceVector(0))
+				{
+					bytes.putInt(pos, (int) m_Velocity_X);
+					pos += JausUtils.getNumBytes("int");
+				}
+				if (checkPresenceVector(1))
+				{
+					bytes.putInt(pos, (int) m_Velocity_Y);
+					pos += JausUtils.getNumBytes("int");
+				}
+				if (checkPresenceVector(2))
+				{
+					bytes.putInt(pos, (int) m_Velocity_Z);
+					pos += JausUtils.getNumBytes("int");
+				}
+				if (checkPresenceVector(3))
+				{
+					bytes.putShort(pos, (short) m_RollRate);
+					pos += JausUtils.getNumBytes("short");
+				}
+				if (checkPresenceVector(4))
+				{
+					bytes.putShort(pos, (short) m_PitchRate);
+					pos += JausUtils.getNumBytes("short");
+				}
+				if (checkPresenceVector(5))
+				{
+					bytes.putShort(pos, (short) m_YawRate);
+					pos += JausUtils.getNumBytes("short");
+				}
+			}
+			
+			public void decode(ByteBuffer bytes, int pos)
+			{
+				
+				if (bytes.array() == null)
+				{
+					return;
+				}
+				if(bytes.order() != ByteOrder.LITTLE_ENDIAN)
+				{
+					bytes.order(ByteOrder.LITTLE_ENDIAN);
+				}
+				
+				try
+				{
+					short m_PresenceVectorTemp = 0;
+				m_PresenceVectorTemp = (short) (bytes.get(pos) & 0xff);
+				pos += JausUtils.getNumBytes("byte");
+				m_PresenceVector = JausUtils.setPV(m_PresenceVectorTemp);
+				}
+				catch(Exception e)
+				{
+					logger.log(Level.SEVERE, null, e);
+				}
+				m_CommandType = (short) (bytes.get(pos) & 0xff);
+				pos += JausUtils.getNumBytes("byte");
+				if (checkPresenceVector(0))
+				{
+					m_Velocity_X = bytes.getInt(pos) & 0xffffffffL;
+					pos += JausUtils.getNumBytes("int");
+				}
+				if (checkPresenceVector(1))
+				{
+					m_Velocity_Y = bytes.getInt(pos) & 0xffffffffL;
+					pos += JausUtils.getNumBytes("int");
+				}
+				if (checkPresenceVector(2))
+				{
+					m_Velocity_Z = bytes.getInt(pos) & 0xffffffffL;
+					pos += JausUtils.getNumBytes("int");
+				}
+				if (checkPresenceVector(3))
+				{
+					m_RollRate = bytes.getShort(pos) & 0xffff;
+					pos += JausUtils.getNumBytes("short");
+				}
+				if (checkPresenceVector(4))
+				{
+					m_PitchRate = bytes.getShort(pos) & 0xffff;
+					pos += JausUtils.getNumBytes("short");
+				}
+				if (checkPresenceVector(5))
+				{
+					m_YawRate = bytes.getShort(pos) & 0xffff;
+					pos += JausUtils.getNumBytes("short");
+				}
+			}
+			
+			public ReportVelocityCommand.Body.VelocityCommandRec assign(VelocityCommandRec value)
+			{
+				m_PresenceVector = value.m_PresenceVector;
+				m_CommandType = value.m_CommandType;
+				m_Velocity_X = value.m_Velocity_X;
+				m_Velocity_Y = value.m_Velocity_Y;
+				m_Velocity_Z = value.m_Velocity_Z;
+				m_RollRate = value.m_RollRate;
+				m_PitchRate = value.m_PitchRate;
+				m_YawRate = value.m_YawRate;
+				
+				return this;
+			}
+			
+			public boolean isEqual(VelocityCommandRec value)
+			{
+				if (!m_PresenceVector.equals(value.m_PresenceVector))
+				{
+					return false;
+				}
+				if (m_CommandType != value.getCommandType())
+				{
+					return false;
+				}
+				if (m_Velocity_X != value.getVelocity_X())
+				{
+					return false;
+				}
+				if (m_Velocity_Y != value.getVelocity_Y())
+				{
+					return false;
+				}
+				if (m_Velocity_Z != value.getVelocity_Z())
+				{
+					return false;
+				}
+				if (m_RollRate != value.getRollRate())
+				{
+					return false;
+				}
+				if (m_PitchRate != value.getPitchRate())
+				{
+					return false;
+				}
+				if (m_YawRate != value.getYawRate())
+				{
+					return false;
+				}
+				
+				return true;
+			}
+			
+			public boolean notEquals(VelocityCommandRec value)
+			{
+				return !this.isEqual(value);
+			}
+			
+			public VelocityCommandRec()
+			{
+				m_parent = null;
+				m_PresenceVector = new BitSet();
+				m_PresenceVectorTemp = 0;
+				m_CommandType = 0;
+				m_Velocity_X = 0;
+				m_Velocity_Y = 0;
+				m_Velocity_Z = 0;
+				m_RollRate = 0;
+				m_PitchRate = 0;
+				m_YawRate = 0;
+			}
+			
+			public VelocityCommandRec(VelocityCommandRec value)
+			{
+				/// Initiliaze the protected variables
+				m_parent = null;
+				m_PresenceVector = new BitSet();
+				m_PresenceVectorTemp = 0;
+				m_CommandType = 0;
+				m_Velocity_X = 0;
+				m_Velocity_Y = 0;
+				m_Velocity_Z = 0;
+				m_RollRate = 0;
+				m_PitchRate = 0;
+				m_YawRate = 0;
+				
+				/// Copy the values
+				m_PresenceVector = value.m_PresenceVector;
+				m_CommandType = value.m_CommandType;
+				m_Velocity_X = value.m_Velocity_X;
+				m_Velocity_Y = value.m_Velocity_Y;
+				m_Velocity_Z = value.m_Velocity_Z;
+				m_RollRate = value.m_RollRate;
+				m_PitchRate = value.m_PitchRate;
+				m_YawRate = value.m_YawRate;
+			}
+			
+			public void finalize()
+			{
+			}
+			
+		}
+	
+	
+		protected VelocityCommandRec m_VelocityCommandRec;
+	
+		public ReportVelocityCommand.Body.VelocityCommandRec getVelocityCommandRec()
+		{
+			return m_VelocityCommandRec;
+		}
+		
+		public void setVelocityCommandRec(VelocityCommandRec value)
+		{
+			m_VelocityCommandRec = value;
+			setParentPresenceVector();
+		}
+		
+		public void setParentPresenceVector()
+		{
+			// Nothing needed here, placeholder function
+		}
+		
+		/**
+		 * Returns the number of bytes the used data members of the class occupies
+		 * in the buffer. This is not the number of bytes the data type occupies in 
+		 * Java, but the bytes expected on the wire.
+		 * 
+		 * @return
+		 */
+		public long getSize()
+		{
+			long size = 0;
+			
+			size += m_VelocityCommandRec.getSize();
+			
+			return size;
+		}
+		
+		public void encode(ByteBuffer bytes, int pos)
+		{
+			
+			if (bytes.array() == null)
+			{
+				return;
+			}
+			
+			if(bytes.order() != ByteOrder.LITTLE_ENDIAN)
+			{
+				bytes.order(ByteOrder.LITTLE_ENDIAN);
+			}
+			
+			m_VelocityCommandRec.encode(bytes, pos);
+			pos += m_VelocityCommandRec.getSize();
+		}
+		
+		public void decode(ByteBuffer bytes, int pos)
+		{
+			
+			if (bytes.array() == null)
+			{
+				return;
+			}
+			if(bytes.order() != ByteOrder.LITTLE_ENDIAN)
+			{
+				bytes.order(ByteOrder.LITTLE_ENDIAN);
+			}
+			
+			m_VelocityCommandRec.decode(bytes, pos);
+			pos += m_VelocityCommandRec.getSize();
+		}
+		
+		public ReportVelocityCommand.Body assign(Body value)
+		{
+			m_VelocityCommandRec = value.m_VelocityCommandRec;
+			m_VelocityCommandRec.setParent(this);
+			/// This code is currently not supported
+			
+			return this;
+		}
+		
+		public boolean isEqual(Body value)
+		{
+			if (!m_VelocityCommandRec.isEqual(value.getVelocityCommandRec()))
+			{
+				return false;
+			}
+			/// This code is currently not supported
+			return true;
+		}
+		
+		public boolean notEquals(Body value)
+		{
+			return !this.isEqual(value);
+		}
+		
+		public Body()
+		{
+			m_VelocityCommandRec = new VelocityCommandRec();
+			m_VelocityCommandRec.setParent(this);
+		}
+		
+		public Body(Body value)
+		{
+			/// Initiliaze the protected variables
+			m_VelocityCommandRec = new VelocityCommandRec();
+			m_VelocityCommandRec.setParent(this);
+			
+			/// Copy the values
+			m_VelocityCommandRec = value.m_VelocityCommandRec;
+			m_VelocityCommandRec.setParent(this);
+			/// This code is currently not supported
+		}
+		
+		public void finalize()
+		{
+		}
+		
+	}
+	protected AppHeader m_AppHeader;
+	protected Body m_Body;
+	public long getID()
+	{
+	return ID;
+ }
+	public ReportVelocityCommand.AppHeader getAppHeader()
+	{
+		return m_AppHeader;
+	}
+	
+	public void setAppHeader(AppHeader value)
+	{
+		m_AppHeader = value;
+	}
+	
+	public ReportVelocityCommand.Body getBody()
+	{
+		return m_Body;
+	}
+	
+	public int setBody(Body value)
+	{
+		m_Body = value;
+		return 0;
+	}
+	
+	/**
+	 * Returns the number of bytes the used data members of the class occupies
+	 * in the buffer. This is not the number of bytes the data type occupies in 
+	 * Java, but the bytes expected on the wire.
+	 * 
+	 * @return
+	 */
+	public long getSize()
+	{
+		int size = 0;
+		
+		size += m_AppHeader.getSize();
+		size += m_Body.getSize();
+		
+		return size;
+	}
+	
+	public void encode(ByteBuffer bytes, int pos)
+	{
+		
+		if (bytes.array() == null)
+		{
+			return;
+		}
+		if(bytes.order() != ByteOrder.LITTLE_ENDIAN)
+		{
+			bytes.order(ByteOrder.LITTLE_ENDIAN);
+		}
+		
+		m_AppHeader.encode(bytes, pos);
+		pos += m_AppHeader.getSize();
+		m_Body.encode(bytes, pos);
+		pos += m_Body.getSize();
+	}
+	
+	public void decode(ByteBuffer bytes, int pos)
+	{
+		
+		if (bytes.array() == null)
+		{
+			return;
+		}
+		if(bytes.order() != ByteOrder.LITTLE_ENDIAN)
+		{
+			bytes.order(ByteOrder.LITTLE_ENDIAN);
+		}
+		
+		m_AppHeader.decode(bytes, pos);
+		pos += m_AppHeader.getSize();
+		m_Body.decode(bytes, pos);
+		pos += m_Body.getSize();
+	}
+	
+	public ReportVelocityCommand setAs(ReportVelocityCommand value)
+	{
+		m_AppHeader = value.m_AppHeader;
+		m_Body = value.m_Body;
+		
+		return this;
+	}
+	
+	public boolean isEqual(ReportVelocityCommand value)
+	{
+		if (!m_AppHeader.isEqual(value.getAppHeader()))
+		{
+			return false;
+		}
+		if (!m_Body.isEqual(value.getBody()))
+		{
+			return false;
+		}
+		
+		return true;
+	}
+	
+	public boolean notEquals(ReportVelocityCommand value)
+	{
+		return !isEqual(value);
+	}
+	
+	public ReportVelocityCommand()
+	{
+		m_AppHeader = new AppHeader();
+		m_Body = new Body();
+		m_IsCommand = false;
+	}
+	
+	public  ReportVelocityCommand(ReportVelocityCommand value)
+	{
+		/// Initiliaze the protected variables
+		m_AppHeader = new AppHeader();
+		m_Body = new Body();
+		m_IsCommand = false;
+		
+		/// Copy the values
+		m_AppHeader = value.m_AppHeader;
+		m_Body = value.m_Body;
+	}
+	
+}
