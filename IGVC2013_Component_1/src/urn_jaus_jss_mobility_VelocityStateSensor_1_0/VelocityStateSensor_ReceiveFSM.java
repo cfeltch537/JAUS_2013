@@ -1,6 +1,7 @@
 
 package src.urn_jaus_jss_mobility_VelocityStateSensor_1_0;
 
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.StringTokenizer;
@@ -28,6 +29,7 @@ public class VelocityStateSensor_ReceiveFSM extends StateMachine{
 	Events_ReceiveFSM pEvents_ReceiveFSM;
 
     VelocityStateSensor_ReceiveFSMContext context;
+    DecimalFormat threeDec = new DecimalFormat("0.000");
 
     
 	
@@ -69,12 +71,21 @@ public class VelocityStateSensor_ReceiveFSM extends StateMachine{
 
 		if(arg0.equals("ReportVelocityState")){
 			JausGUI.addOutputText(arg0 + " Message Recieved");
+			
+			JausGUI.socket.JausRequest();
 			ReportVelocityState rvMsg = new ReportVelocityState();
-			// Instantiate Message
-			rvMsg.getBody().getReportVelocityStateRec().setVelocity_X(Double.parseDouble(JausGUI.txtXvelocity.getText()));
-			// ROB ROB ROB ROB ROB NEED TO SET X (FOREWARD) VELOCITY
-			rvMsg.getBody().getReportVelocityStateRec().setYawRate(Double.parseDouble(JausGUI.txtYaw.getText()));
-			// ROB ROB ROB ROB ROB NEED TO SET YAW (TURNING) RATE
+			
+			double x_velocity = JausGUI.RobData[3];
+			double omega = JausGUI.RobData[4];
+			JausGUI.addOutputText("Recieved X Velocity: " + threeDec.format(x_velocity) + "; Omega: " + threeDec.format(omega));
+			JausGUI.txtXvelocity.setText(threeDec.format(x_velocity));
+			JausGUI.txtYaw.setText(threeDec.format(omega));
+			
+//			// Instantiate Message
+			rvMsg.getBody().getReportVelocityStateRec().setVelocity_X(x_velocity);
+//			// ROB ROB ROB ROB ROB NEED TO SET X (FOREWARD) VELOCITY
+			rvMsg.getBody().getReportVelocityStateRec().setYawRate(omega);
+//			// ROB ROB ROB ROB ROB NEED TO SET YAW (TURNING) RATE
 			TimeStamp time = new TimeStamp();
 			Calendar now = Calendar.getInstance();
 			// Instantiate "Calendar"

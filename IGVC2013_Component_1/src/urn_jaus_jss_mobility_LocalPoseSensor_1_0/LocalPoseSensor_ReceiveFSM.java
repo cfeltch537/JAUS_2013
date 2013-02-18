@@ -12,6 +12,7 @@ import framework.internalEvents.*;
 import framework.StateMachine;
 import framework.messages.Message;
 import statemap.*;
+import src.ClientSocket;
 import src.JausGUI;
 import src.urn_jaus_jss_mobility_LocalPoseSensor_1_0.InternalEvents.*;
 import src.urn_jaus_jss_mobility_LocalPoseSensor_1_0.Messages.*;
@@ -86,10 +87,19 @@ public void SendAction(String arg0, Receive.Body.ReceiveRec transportData)
 		// JAUS Address of received message source
 		
 		if(arg0.equals("ReportLocalPose")){
+			JausGUI.socket.JausRequest();
 			ReportLocalPose rlpMsg = new ReportLocalPose();
 			//Instantiate Message
-			rlpMsg.getBody().getLocalPoseRec().setX(Double.parseDouble(JausGUI.textdeltaX.getText())); // ROB ROB ROB: This should be filled with actual change from local reference
-			rlpMsg.getBody().getLocalPoseRec().setY(Double.parseDouble(JausGUI.textdeltaY.getText()));
+			double x = JausGUI.RobData[0];
+			double y = JausGUI.RobData[1];
+			double yaw = JausGUI.RobData[2];
+			JausGUI.addOutputText("Recieved X: " + threeDec.format(x) + "; Y: " + threeDec.format(y) + "; YAW: " + threeDec.format(yaw));
+			JausGUI.textdeltaX.setText(threeDec.format(x));
+			JausGUI.textdeltaY.setText(threeDec.format(y));
+			JausGUI.textdeltaYaw.setText(threeDec.format(yaw));
+			
+			rlpMsg.getBody().getLocalPoseRec().setX(x); // ROB ROB ROB: This should be filled with actual change from local reference
+			rlpMsg.getBody().getLocalPoseRec().setY(y);
 			src.urn_jaus_jss_mobility_LocalPoseSensor_1_0.Messages.ReportLocalPose.Body.LocalPoseRec.TimeStamp time = new src.urn_jaus_jss_mobility_LocalPoseSensor_1_0.Messages.ReportLocalPose.Body.LocalPoseRec.TimeStamp();
 			Calendar now = Calendar.getInstance();
 			// Instantiate "Calendar"

@@ -95,6 +95,8 @@ public final class JausGUI extends JFrame {
 	public static JLabel led_ReportedIdentification;
 	public static Boolean periodicQuery;
 	Thread t = new PeriodicQuery();
+	public static ClientSocket socket = new ClientSocket();
+	public static double[] RobData = new double[] { 0,0,0,0,0 };
 	/**
 	 * Launch the application.
 	 */

@@ -29,7 +29,7 @@ public class Main {
 		{
 			new JausCOP_GUI();
 			JausCOP_GUI.main(null);
-			while(!JausCOP_GUI.JausAddressSet){	}
+			//while(!JausCOP_GUI.JausAddressSet){	}
 			// Instantiate the component and start it once JausAddress is set
 	    	TestCOP_Component cmpt = new TestCOP_Component(Integer.parseInt(JausCOP_GUI.textSubSystem.getText()), Short.parseShort(JausCOP_GUI.textNode.getText()), Short.parseShort(JausCOP_GUI.textComponent.getText()));
 	    	JausCOP_GUI.addOutputText("Common Operating Point initialized");

@@ -31,7 +31,8 @@ public class Main {
 			new JausGUI();
 	    	JausGUI.main(null);
 	    	JausGUI.addOutputText("USER ACTION REQUIRED: Set JAUS Address");
-	    	while(!JausGUI.AddressSet){ }
+	    	JausGUI.socket.connect();
+	    	//while(!JausGUI.AddressSet){ }
 	    	// Instantiate the component and start it.
 	    	IGVC2013_Component cmpt = new IGVC2013_Component(Integer.parseInt(JausGUI.textSubsytemID.getText()), Short.parseShort(JausGUI.textNodeID.getText()), Short.parseShort(JausGUI.textComponentID.getText()));
 //			// Catch exit signals
