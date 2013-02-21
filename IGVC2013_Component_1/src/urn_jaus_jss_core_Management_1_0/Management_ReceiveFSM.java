@@ -80,10 +80,6 @@ public class Management_ReceiveFSM extends StateMachine{
 	{
 		return context.getState().getName();
 	}
-	public String getStateName_nonStatic()
-	{
-		return context.getState().getName();
-	}
 
 	public void DeleteIDAction(Receive.Body.ReceiveRec transportData)
 {

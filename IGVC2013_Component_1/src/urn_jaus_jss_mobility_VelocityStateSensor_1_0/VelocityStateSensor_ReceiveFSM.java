@@ -72,20 +72,12 @@ public class VelocityStateSensor_ReceiveFSM extends StateMachine{
 		if(arg0.equals("ReportVelocityState")){
 			JausGUI.addOutputText(arg0 + " Message Recieved");
 			
-			JausGUI.socket.JausRequest();
+			JausGUI.socket.JausDataRequest();
 			ReportVelocityState rvMsg = new ReportVelocityState();
-			
-			double x_velocity = JausGUI.RobData[3];
-			double omega = JausGUI.RobData[4];
-			JausGUI.addOutputText("Recieved X Velocity: " + threeDec.format(x_velocity) + "; Omega: " + threeDec.format(omega));
-			JausGUI.txtXvelocity.setText(threeDec.format(x_velocity));
-			JausGUI.txtYaw.setText(threeDec.format(omega));
-			
+			JausGUI.addOutputText("Recieved X Velocity: " + threeDec.format(JausGUI.robot_x_velocity) + "; Omega: " + threeDec.format(JausGUI.robot_omega));
 //			// Instantiate Message
-			rvMsg.getBody().getReportVelocityStateRec().setVelocity_X(x_velocity);
-//			// ROB ROB ROB ROB ROB NEED TO SET X (FOREWARD) VELOCITY
-			rvMsg.getBody().getReportVelocityStateRec().setYawRate(omega);
-//			// ROB ROB ROB ROB ROB NEED TO SET YAW (TURNING) RATE
+			rvMsg.getBody().getReportVelocityStateRec().setVelocity_X(JausGUI.robot_x_velocity);
+			rvMsg.getBody().getReportVelocityStateRec().setYawRate(JausGUI.robot_omega);
 			TimeStamp time = new TimeStamp();
 			Calendar now = Calendar.getInstance();
 			// Instantiate "Calendar"

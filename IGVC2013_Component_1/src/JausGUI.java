@@ -96,7 +96,24 @@ public final class JausGUI extends JFrame {
 	public static Boolean periodicQuery;
 	Thread t = new PeriodicQuery();
 	public static ClientSocket socket = new ClientSocket();
-	public static double[] RobData = new double[] { 0,0,0,0,0 };
+
+	//Robot Reported Values ******************
+	public static Double robot_x_position;
+	public static Double robot_y_position;
+	public static Double robot_yaw_position;
+	public static Double robot_x_velocity;
+	public static Double robot_omega;
+	public static Double robot_desired_speed;
+	public static Integer robot_Active_Element_UID;
+	public static Double robot_LocalWaypoint_X;
+	public static Double robot_LocalWaypoint_Y;
+	//*****************************************
+	
+	public static DecimalFormat threeDec = new DecimalFormat("0.000");
+	
+	
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -479,6 +496,7 @@ public final class JausGUI extends JFrame {
 			    SimpleDateFormat ft = new SimpleDateFormat ("d.H.m.s.S");
 			    //Time (D.H.M.S.mS)
 				txtTimeStamp.setText(ft.format(dNow));
+				socket.JausDataRequest(); //Why not just update all other data as well.
 			}
 		});
 		
@@ -728,6 +746,18 @@ public final class JausGUI extends JFrame {
 	
 	public static void addOutputText(String string) {
 		textOutputPane.setText(textOutputPane.getText() + "\n" + string);
+	}
+	
+	public static void updateRobotValues(){
+
+		textdeltaX.setText(threeDec.format(robot_x_position));
+		textdeltaY.setText(threeDec.format(robot_y_position));
+		textdeltaYaw.setText(threeDec.format(robot_yaw_position));
+		textExecuteSpeed.setText(threeDec.format(robot_desired_speed));
+		textdeltaYaw.setText(threeDec.format(robot_yaw_position));
+		textLocalWaypoint.setText("("+threeDec.format(robot_LocalWaypoint_X)+" , "+threeDec.format(robot_LocalWaypoint_Y)+")");
+		txtXvelocity.setText(threeDec.format(robot_x_velocity));
+		txtYaw.setText(threeDec.format(robot_omega));
 	}
 	
 }

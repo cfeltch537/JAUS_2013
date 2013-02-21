@@ -201,6 +201,7 @@ public void executeWaypointListAction(ExecuteList msg)
 	}
 	executeSpeed = msg.getBody().getExecuteListRec().getSpeed();
 	JausGUI.textExecuteSpeed.setText(threeDec.format(executeSpeed));
+	JausGUI.socket.ExecuteListRequest(localWaypointLinkedList, executeSpeed, activeWaypointListPosition);
 	ReportLocalWaypoint currentWaypoint = new ReportLocalWaypoint();
 	//LocalWaypointRec instantiated to hold Rec after decoding it from the ElementData
 	currentWaypoint.decode(localWaypointLinkedList.get(activeWaypointListPosition).getElementData().getData(), 0);
@@ -216,6 +217,7 @@ public void modifyTravelSpeedAction(ExecuteList msg)
 {
 	/// Modifies Travel Speed when Execute Message is sent with no UID;
 	executeSpeed = msg.getBody().getExecuteListRec().getSpeed();
+	JausGUI.socket.SetSpeedRequest(executeSpeed);
 	//Do Something Maybe......
 	JausGUI.textExecuteSpeed.setText(threeDec.format(executeSpeed));
 	JausGUI.addOutputText("LWD: Travel Speed Modified");
@@ -224,7 +226,7 @@ public void modifyTravelSpeedAction(ExecuteList msg)
 
 public void resetTravelSpeedAction()
 {
-	/// Insert User Code HERE
+	///Not Used
 }
 
 public void setElementAction(SetElement msg)

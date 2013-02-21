@@ -87,16 +87,12 @@ public void SendAction(String arg0, Receive.Body.ReceiveRec transportData)
 		// JAUS Address of received message source
 		
 		if(arg0.equals("ReportLocalPose")){
-			JausGUI.socket.JausRequest();
+			JausGUI.socket.JausDataRequest();
 			ReportLocalPose rlpMsg = new ReportLocalPose();
 			//Instantiate Message
-			double x = JausGUI.RobData[0];
-			double y = JausGUI.RobData[1];
-			double yaw = JausGUI.RobData[2];
-			JausGUI.addOutputText("Recieved X: " + threeDec.format(x) + "; Y: " + threeDec.format(y) + "; YAW: " + threeDec.format(yaw));
-			JausGUI.textdeltaX.setText(threeDec.format(x));
-			JausGUI.textdeltaY.setText(threeDec.format(y));
-			JausGUI.textdeltaYaw.setText(threeDec.format(yaw));
+			double x = JausGUI.robot_x_position;
+			double y = JausGUI.robot_y_position;
+			double yaw = JausGUI.robot_yaw_position;
 			
 			rlpMsg.getBody().getLocalPoseRec().setX(x); // ROB ROB ROB: This should be filled with actual change from local reference
 			rlpMsg.getBody().getLocalPoseRec().setY(y);
@@ -122,12 +118,12 @@ public void SendAction(String arg0, Receive.Body.ReceiveRec transportData)
 
 public void updateLocalPoseAction(SetLocalPose msg)
 {
+		JausGUI.addOutputText("LPS: Pose");
 		LocalXreference = msg.getBody().getLocalPoseRec().getX();
 		LocalYreference = msg.getBody().getLocalPoseRec().getY();
 		LocalYAWreference = msg.getBody().getLocalPoseRec().getYaw();
-		JausGUI.textXref.setText(threeDec.format(LocalXreference));
-		JausGUI.textYref.setText(threeDec.format(LocalYreference));
-		JausGUI.textYawRef.setText(threeDec.format(LocalYAWreference));
+		JausGUI.addOutputText("LPS: Pose Updated");
+		JausGUI.socket.SetLocalPoseRequest(LocalXreference, LocalYreference, LocalYAWreference);
 }
 
 
