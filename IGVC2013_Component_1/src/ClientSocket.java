@@ -25,68 +25,11 @@ public class ClientSocket {//SocketClient
 	
 	ClientSocket(){}
 	
-//	public static void main()
-//	{
-//		/**Define a host **/
-//		String host = "192.168.36.153";
-//		/**Define a port**/
-//		int port = 19998;
-//
-//		StringBuffer instr = new StringBuffer();
-//		String TimeStamp;
-//		System.out.println("SocketClient initialized");
-//
-//		try{//how to request a socket and establishing a connection
-//			/**obtain an address object of the server*/
-//			InetAddress address = InetAddress.getByName(host);
-//			/**Establish a socket connection*/
-//			Socket connection = new Socket(address, port);
-//			/** Intatiate a BufferedOutputStream object*/
-//			//BufferedOutputStream bos = new BufferedOutputStream(connection.getOutputStream());
-//			ObjectOutputStream oos = new ObjectOutputStream(connection.getOutputStream());
-////			OutputStreamWriter osw = new OutputStreamWriter(bos, "US-ASCII");
-//			TimeStamp = new java.util.Date().toString();
-//			String proccess = "Calling the Socet Server on "+ host + "port "+ port+" at "+TimeStamp+(char) 13;
-//
-//			oos.writeObject(proccess);
-//			oos.flush();
-//			
-//			//osw.write(proccess);
-//			
-////			osw.flush();
-//			//BufferedInputStream bis = new BufferedInputStream(connection.getInputStream());
-//			ObjectInputStream ois  =  new ObjectInputStream(connection.getInputStream());
-//			
-//			/**Instantiate an InputStreamReader with the optional
-//			 * character encoding.
-//			 */
-//
-//			//InputStreamReader isr = new InputStreamReader(bis, "US-ASCII");
-//			Object o = ois.readObject();
-//			
-//			/**Read the socket's InputStream and append to a StringBuffer */
-////			int c;
-////			while ( (c = isr.read()) != 13)
-////				instr.append( (char) c);
-//
-//			/** Close the socket connection. */
-//			connection.close();
-//			System.out.println(instr);
-//		}
-//		catch (IOException f) {
-//			System.out.println("IOException: " + f);
-//		}
-//		catch (Exception g) {
-//			System.out.println("Exception: " + g);
-//		}
-//	}
-//	
-// 
 	public void connect()
 	//String host,int port
 	{
 		/**Define a host **/
-		String host = "192.168.35.235";
+		String host = "192.168.35.98";
 		/**Define a port**/
 		int port = 19998;
 
@@ -115,6 +58,8 @@ public class ClientSocket {//SocketClient
 	
 	public void JausDataRequest()
 	{
+		System.out.println("Sending JausDataRequest...");
+
 		try {
 			Object[] messageID = new Object[] {4};
 			
@@ -132,15 +77,16 @@ public class ClientSocket {//SocketClient
 			System.out.println(e);
 			e.printStackTrace();
 		}
+		System.out.println("Sent JausDataRequest");
 	}
 	
 	public void SetLocalPoseRequest(Double x, Double y, Double yaw)
 	{
-
+		System.out.println("Sending SetLocalPose...");
 		try {
 			
 			Integer messageID = 0;
-		
+			setLocalPoseList.clear();
 			setLocalPoseList.add(messageID);
 			setLocalPoseList.add(x);
 			setLocalPoseList.add(y);
@@ -158,16 +104,18 @@ public class ClientSocket {//SocketClient
 			System.out.println(e);
 			e.printStackTrace();
 		}
+		System.out.println("Sent SetLocalPose");
 	}
 	
 	public void ExecuteListRequest(LinkedList<ElementRec> waypointList, Double executeSpeed, Integer startElementPos)
 	{
+		System.out.println("Sending ExecuteListRequest...");
 		ReportLocalWaypoint decodedWaypoint = new ReportLocalWaypoint();
 		Integer messageID = 1;
 		try {
 			
+			setExecuteList.clear();
 			setExecuteList.add(messageID);
-			
 			for(int j=startElementPos; j<waypointList.size(); j++){
 				decodedWaypoint.decode(waypointList.get(j).getElementData().getData(), 0);
 				setExecuteList.add(new Object[] {waypointList.get(j).getElementUID(), decodedWaypoint.getBody().getLocalWaypointRec().getX(), decodedWaypoint.getBody().getLocalWaypointRec().getY()});
@@ -185,14 +133,17 @@ public class ClientSocket {//SocketClient
 			System.out.println(e);
 			e.printStackTrace();
 		}
+		
+		System.out.println("Sent ExecuteListRequest");
 	}
 	
 	public void SetSpeedRequest(Double executeSpeed)
 	{
-
+		System.out.println("Sending SetSpeedRequest...");
 		Integer messageID = 2;
 		try {
 			
+			setExecuteSpeed.clear();
 			setExecuteSpeed.add(messageID);
 			setExecuteSpeed.add(executeSpeed);
 			
@@ -208,6 +159,7 @@ public class ClientSocket {//SocketClient
 			System.out.println(e);
 			e.printStackTrace();
 		}
+		System.out.println("Sent SetSpeedRequest");
 	}
 	public void Shutdown()
 	{
