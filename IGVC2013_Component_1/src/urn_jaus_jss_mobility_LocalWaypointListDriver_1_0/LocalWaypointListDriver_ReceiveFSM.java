@@ -60,7 +60,7 @@ public class LocalWaypointListDriver_ReceiveFSM extends StateMachine{
 	this.pListManager_ReceiveFSM = pListManager_ReceiveFSM;
 }
 	public static LinkedList<ElementRec> localWaypointLinkedList = new LinkedList<ElementRec>();
-	public static Integer activeWaypointListPosition = 0;
+	public static Integer activeWaypointListPosition = 0; // Should alwas be zerd; was used before robotic framework integration
 	public static Short requestIDaccepted;
 	public static Double executeSpeed = 0.0;
 	public DecimalFormat threeDec = new DecimalFormat("0.000");
@@ -154,22 +154,25 @@ public class LocalWaypointListDriver_ReceiveFSM extends StateMachine{
 			JausGUI.addOutputText("LWD: RejectElementRequest NOT SUPPORTED");
 		}
 		else if(arg0.equals("ReportLocalWaypoint")){ 
+			JausGUI.addOutputText("WHY NO SEE!!!!!!!!!!");
 			ReportLocalWaypoint rlwMsg = new ReportLocalWaypoint();
+			JausGUI.socket.JausDataRequest();
 			//Instantiate message
-			ReportLocalWaypoint current = new ReportLocalWaypoint();
-			//LocalWaypointRec instantiated to hold Rec after decoding it from the ElementData
-			current.decode(localWaypointLinkedList.get(activeWaypointListPosition).getElementData().getData(), 0);
-			//Decode data into ReportLocalWaypoint
-			rlwMsg.getBody().getLocalWaypointRec().setX(current.getBody().getLocalWaypointRec().getX());
-			rlwMsg.getBody().getLocalWaypointRec().setY(current.getBody().getLocalWaypointRec().getY());
+//			ReportLocalWaypoint current = new ReportLocalWaypoint();
+//			//LocalWaypointRec instantiated to hold Rec after decoding it from the ElementData
+//			current.decode(localWaypointLinkedList.get(activeWaypointListPosition).getElementData().getData(), 0);
+//			//Decode data into ReportLocalWaypoint
+			rlwMsg.getBody().getLocalWaypointRec().setX(JausGUI.robot_LocalWaypoint_X);
+			rlwMsg.getBody().getLocalWaypointRec().setY(JausGUI.robot_LocalWaypoint_Y);
 			//Fill body with necessary fields (X and Y)
 			sendJausMessage(rlwMsg,source);
 			//Send Message to source
 			JausGUI.addOutputText("LWD: SENT: ReportLocalWaypoint Message  (Dest: " + sourceString + "Waypoint X Pos: "+ rlwMsg.getBody().getLocalWaypointRec().getX() + "Waypoint Y Pos: "+ rlwMsg.getBody().getLocalWaypointRec().getY() + ")");
 		}else if(arg0.equals("ReportActiveElement")){ 
+			JausGUI.socket.JausDataRequest();
 			ReportActiveElement raeMsg = new ReportActiveElement();
 			//Instantiate message
-			raeMsg.getBody().getActiveElementRec().setElementUID(localWaypointLinkedList.get(activeWaypointListPosition).getElementUID());
+			raeMsg.getBody().getActiveElementRec().setElementUID(JausGUI.robot_Active_Element_UID);
 			//Fill body with necessary fields current waypoint element UID
 			sendJausMessage(raeMsg,source);
 			//Send Message to source
@@ -201,6 +204,7 @@ public void executeWaypointListAction(ExecuteList msg)
 	}
 	executeSpeed = msg.getBody().getExecuteListRec().getSpeed();
 	JausGUI.textExecuteSpeed.setText(threeDec.format(executeSpeed));
+	JausGUI.socket.SetSpeedRequest(executeSpeed);
 	JausGUI.socket.ExecuteListRequest(localWaypointLinkedList, executeSpeed, activeWaypointListPosition);
 	ReportLocalWaypoint currentWaypoint = new ReportLocalWaypoint();
 	//LocalWaypointRec instantiated to hold Rec after decoding it from the ElementData
@@ -284,7 +288,6 @@ public void setElementAction(SetElement msg)
 					tempForGUI.decode(localWaypointLinkedList.get(j+1).getElementData().getData(), 0);
 					containedWaypoint = "("+tempForGUI.getBody().getLocalWaypointRec().getX()+" , "+tempForGUI.getBody().getLocalWaypointRec().getY()+")";
 					JausGUI.addOutputText("LWD: UID " + ownUID + " set as Element " + j_inc + " " + containedWaypoint);
-					
 				}
 			}
 		}

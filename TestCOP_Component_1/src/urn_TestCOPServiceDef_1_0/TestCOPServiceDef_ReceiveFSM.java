@@ -70,7 +70,7 @@ public void handleConfirmControlAction(ConfirmControl msg, Receive.Body.ReceiveR
 		if(ResponceCode.equals((short) 0)){	responce = "'CONTROL_ACCEPTED'";
 		}else if(ResponceCode.equals((short) 1)){	responce = "'NOT_AVAILABLE'";
 		}else if(ResponceCode.equals((short) 2)){	responce = "'INSUFFICIENT_AUTHORITY'";
-		}else{	responce = ResponceCode.toString() + " -> Unknown Responce Code";
+		}else{	responce = ResponceCode.toString() + "-> Unknown Responce Code";
 		}
 		//Handle Message Body Data
 		JausCOP_GUI.addOutputText("RECIEVED: ConfirmControl Message (Source: " + source + "; Responce: "+ responce + ")");

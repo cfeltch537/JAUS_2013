@@ -122,10 +122,12 @@ public void updateLocalPoseAction(SetLocalPose msg)
 		LocalXreference = msg.getBody().getLocalPoseRec().getX();
 		LocalYreference = msg.getBody().getLocalPoseRec().getY();
 		LocalYAWreference = msg.getBody().getLocalPoseRec().getYaw();
+		JausGUI.textXref.setText(threeDec.format(LocalXreference));
+		JausGUI.textYref.setText(threeDec.format(LocalYreference));
+		JausGUI.textYawRef.setText(threeDec.format(LocalYAWreference));
 		JausGUI.addOutputText("LPS: Pose Updated");
 		JausGUI.socket.SetLocalPoseRequest(LocalXreference, LocalYreference, LocalYAWreference);
 }
-
 
 
 	public boolean isControllingClient(Receive.Body.ReceiveRec transportData)

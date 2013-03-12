@@ -128,7 +128,7 @@ public final class JausGUI extends JFrame {
 				try {
 					JausGUI frame = new JausGUI();
 					frame.setVisible(true);
-					frame.setIconImage(new ImageIcon("C:/JAUS_ICONS/York-College-Logo.gif").getImage());
+					frame.setIconImage(new ImageIcon("C:/JTS/JAUS_ICONS/York-College-Logo.gif").getImage());
 					frame.setTitle("YCP IGVC 2013 - JAUS Server GUI");
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -684,15 +684,15 @@ public final class JausGUI extends JFrame {
 		btnNextWp = new JButton("Next Waypoint");
 		btnNextWp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				src.urn_jaus_jss_mobility_LocalWaypointListDriver_1_0.LocalWaypointListDriver_ReceiveFSM.activeWaypointListPosition++;
+				//src.urn_jaus_jss_mobility_LocalWaypointListDriver_1_0.LocalWaypointListDriver_ReceiveFSM.activeWaypointListPosition++;
 				//Increments Active Waypoint
-				DecimalFormat threeDec = new DecimalFormat("0.000");
-				ReportLocalWaypoint currentWaypoint = new ReportLocalWaypoint();
+				//DecimalFormat threeDec = new DecimalFormat("0.000");
+				//ReportLocalWaypoint currentWaypoint = new ReportLocalWaypoint();
 				//LocalWaypointRec instantiated to hold Rec after decoding it from the ElementData
-				currentWaypoint.decode(src.urn_jaus_jss_mobility_LocalWaypointListDriver_1_0.LocalWaypointListDriver_ReceiveFSM.localWaypointLinkedList.get(src.urn_jaus_jss_mobility_LocalWaypointListDriver_1_0.LocalWaypointListDriver_ReceiveFSM.activeWaypointListPosition).getElementData().getData(), 0);
+				//currentWaypoint.decode(src.urn_jaus_jss_mobility_LocalWaypointListDriver_1_0.LocalWaypointListDriver_ReceiveFSM.localWaypointLinkedList.get(src.urn_jaus_jss_mobility_LocalWaypointListDriver_1_0.LocalWaypointListDriver_ReceiveFSM.activeWaypointListPosition).getElementData().getData(), 0);
 				//Decode data into LocalWaypointRec
-				textLocalWaypoint.setText("( "+threeDec.format(currentWaypoint.getBody().getLocalWaypointRec().getX())+" , "+threeDec.format(currentWaypoint.getBody().getLocalWaypointRec().getY())+" )");
-				textActiveWaypoint.setText(src.urn_jaus_jss_mobility_LocalWaypointListDriver_1_0.LocalWaypointListDriver_ReceiveFSM.localWaypointLinkedList.get(src.urn_jaus_jss_mobility_LocalWaypointListDriver_1_0.LocalWaypointListDriver_ReceiveFSM.activeWaypointListPosition).getElementUID()+"");
+				//textLocalWaypoint.setText("( "+threeDec.format(currentWaypoint.getBody().getLocalWaypointRec().getX())+" , "+threeDec.format(currentWaypoint.getBody().getLocalWaypointRec().getY())+" )");
+				//textActiveWaypoint.setText(src.urn_jaus_jss_mobility_LocalWaypointListDriver_1_0.LocalWaypointListDriver_ReceiveFSM.localWaypointLinkedList.get(src.urn_jaus_jss_mobility_LocalWaypointListDriver_1_0.LocalWaypointListDriver_ReceiveFSM.activeWaypointListPosition).getElementUID()+"");
 			}
 		});
 		GridBagConstraints gbc_btnNextWp = new GridBagConstraints();
@@ -737,10 +737,10 @@ public final class JausGUI extends JFrame {
 
 	public static void setLED(JLabel led, String state) {
 		if(state.equals("gray")){ led.setIcon(new ImageIcon(((new ImageIcon("C:/JAUS_ICONS/GrayLED.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); }
-		else if(state.equals("greenOFF")){ led.setIcon(new ImageIcon(((new ImageIcon("C:/JAUS_ICONS/GreenLED_OFF.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); }
-		else if(state.equals("greenON")){ led.setIcon(new ImageIcon(((new ImageIcon("C:/JAUS_ICONS/GreenLED_ON.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); }
-		else if(state.equals("redOFF")){ led.setIcon(new ImageIcon(((new ImageIcon("C:/JAUS_ICONS/RedLED_OFF.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  }
-		else if(state.equals("redON")){ led.setIcon(new ImageIcon(((new ImageIcon("C:/JAUS_ICONS/RedLED_ON.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  }
+		else if(state.equals("greenOFF")){ led.setIcon(new ImageIcon(((new ImageIcon("C:/JTS/JAUS_ICONS/GreenLED_OFF.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); }
+		else if(state.equals("greenON")){ led.setIcon(new ImageIcon(((new ImageIcon("C:/JTS/JAUS_ICONS/GreenLED_ON.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); }
+		else if(state.equals("redOFF")){ led.setIcon(new ImageIcon(((new ImageIcon("C:/JTS/JAUS_ICONS/RedLED_OFF.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  }
+		else if(state.equals("redON")){ led.setIcon(new ImageIcon(((new ImageIcon("C:/JTS/JAUS_ICONS/RedLED_ON.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  }
 		else{ addOutputText("Attempting to set LED to to" + "'" + state + "'; Not a Valid state"); }
 	} 
 	
@@ -750,10 +750,11 @@ public final class JausGUI extends JFrame {
 	
 	public static void updateRobotValues(){
 
-		textdeltaX.setText(threeDec.format(robot_x_position));
-		textdeltaY.setText(threeDec.format(robot_y_position));
-		textdeltaYaw.setText(threeDec.format(robot_yaw_position));
+		textdeltaX.setText(threeDec.format(robot_x_position-src.urn_jaus_jss_mobility_LocalPoseSensor_1_0.LocalPoseSensor_ReceiveFSM.LocalXreference));
+		textdeltaY.setText(threeDec.format(robot_y_position-src.urn_jaus_jss_mobility_LocalPoseSensor_1_0.LocalPoseSensor_ReceiveFSM.LocalYreference));
+		textdeltaYaw.setText(threeDec.format(robot_yaw_position-src.urn_jaus_jss_mobility_LocalPoseSensor_1_0.LocalPoseSensor_ReceiveFSM.LocalYAWreference));
 		textExecuteSpeed.setText(threeDec.format(robot_desired_speed));
+		textActiveWaypoint.setText(robot_Active_Element_UID+"");
 		textdeltaYaw.setText(threeDec.format(robot_yaw_position));
 		textLocalWaypoint.setText("("+threeDec.format(robot_LocalWaypoint_X)+" , "+threeDec.format(robot_LocalWaypoint_Y)+")");
 		txtXvelocity.setText(threeDec.format(robot_x_velocity));

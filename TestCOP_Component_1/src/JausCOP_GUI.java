@@ -140,7 +140,7 @@ public class JausCOP_GUI extends JFrame {
 				try {
 					JausCOP_GUI frame = new JausCOP_GUI();
 					frame.setVisible(true);
-					frame.setIconImage(new ImageIcon("C:/JAUS_ICONS/York-College-Logo.gif").getImage());
+					frame.setIconImage(new ImageIcon("C:/JTS/JAUS_ICONS/York-College-Logo.gif").getImage());
 					frame.setTitle("YCP IGVC 2013 - JAUS Common Operating Picture GUI");
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -798,22 +798,22 @@ public class JausCOP_GUI extends JFrame {
 				element2.setElementUID(2);
 				element2.setPreviousUID(1);
 				element2.setNextUID(0);
-				setLocalWaypoint2.getBody().getLocalWaypointRec().setX(22);
-				setLocalWaypoint2.getBody().getLocalWaypointRec().setY(22);
+				setLocalWaypoint2.getBody().getLocalWaypointRec().setX(12);
+				setLocalWaypoint2.getBody().getLocalWaypointRec().setY(-12);
 				//elementList.addElement(element2);
 				//Element2 added
 				element4.setElementUID(4);
 				element4.setPreviousUID(2);
 				element4.setNextUID(0);
-				setLocalWaypoint4.getBody().getLocalWaypointRec().setX(44);
-				setLocalWaypoint4.getBody().getLocalWaypointRec().setY(44);
+				setLocalWaypoint4.getBody().getLocalWaypointRec().setX(-14);
+				setLocalWaypoint4.getBody().getLocalWaypointRec().setY(14);
 				//elementList.addElement(element4);
 				//Element4 added
 				element3.setElementUID(3);
 				element3.setPreviousUID(2);
 				element3.setNextUID(4);
-				setLocalWaypoint3.getBody().getLocalWaypointRec().setX(33);
-				setLocalWaypoint3.getBody().getLocalWaypointRec().setY(33);
+				setLocalWaypoint3.getBody().getLocalWaypointRec().setX(-13);
+				setLocalWaypoint3.getBody().getLocalWaypointRec().setY(-13);
 				//elementList.addElement(element3);
 				//Element3 added
 				long bufsize; 
@@ -1151,11 +1151,11 @@ public class JausCOP_GUI extends JFrame {
 		
 	}
 	public static void setLED(JLabel led, String state) {
-		if(state.equals("gray")){ led.setIcon(new ImageIcon(((new ImageIcon("C:/JAUS_ICONS/GrayLED.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); }
-		else if(state.equals("greenOFF")){ led.setIcon(new ImageIcon(((new ImageIcon("C:/JAUS_ICONS/GreenLED_OFF.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); }
-		else if(state.equals("greenON")){ led.setIcon(new ImageIcon(((new ImageIcon("C:/JAUS_ICONS/GreenLED_ON.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); }
-		else if(state.equals("redOFF")){ led.setIcon(new ImageIcon(((new ImageIcon("C:/JAUS_ICONS/RedLED_OFF.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  }
-		else if(state.equals("redON")){ led.setIcon(new ImageIcon(((new ImageIcon("C:/JAUS_ICONS/RedLED_ON.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  }
+		if(state.equals("gray")){ led.setIcon(new ImageIcon(((new ImageIcon("C:/JTS/JAUS_ICONS/GrayLED.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); }
+		else if(state.equals("greenOFF")){ led.setIcon(new ImageIcon(((new ImageIcon("C:/JTS/JAUS_ICONS/GreenLED_OFF.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); }
+		else if(state.equals("greenON")){ led.setIcon(new ImageIcon(((new ImageIcon("C:/JTS/JAUS_ICONS/GreenLED_ON.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH))); }
+		else if(state.equals("redOFF")){ led.setIcon(new ImageIcon(((new ImageIcon("C:/JTS/JAUS_ICONS/RedLED_OFF.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  }
+		else if(state.equals("redON")){ led.setIcon(new ImageIcon(((new ImageIcon("C:/JTS/JAUS_ICONS/RedLED_ON.png")).getImage()).getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));  }
 		else{ addOutputText("Attempting to set LED to to" + "'" + state + "'; Not a Valid state"); }
 	}
 	

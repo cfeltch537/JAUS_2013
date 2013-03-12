@@ -29,7 +29,7 @@ public class ClientSocket {//SocketClient
 	//String host,int port
 	{
 		/**Define a host **/
-		String host = "192.168.35.98";
+		String host = "192.168.32.64";
 		/**Define a port**/
 		int port = 19998;
 
@@ -77,7 +77,7 @@ public class ClientSocket {//SocketClient
 			System.out.println(e);
 			e.printStackTrace();
 		}
-		System.out.println("Sent JausDataRequest");
+		System.out.println("Recieved JausData");
 	}
 	
 	public void SetLocalPoseRequest(Double x, Double y, Double yaw)
