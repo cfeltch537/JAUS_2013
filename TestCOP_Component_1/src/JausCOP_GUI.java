@@ -125,6 +125,20 @@ public class JausCOP_GUI extends JFrame {
 	private JTextField textLocalPoseSetX;
 	private JTextField textLocalPoseSetY;
 	private JTextField textLocalPoseSetYaw;
+	private JLabel lblSetWaypoints;
+	private JPanel panel;
+	private JTextField lwpnY1;
+	private JTextField lwpnX1;
+	private JTextField lwpnX2;
+	private JTextField lwpnY2;
+	private JTextField lwpnX5;
+	private JTextField lwpnY5;
+	private JTextField lwpnX3;
+	private JTextField lwpnY3;
+	private JTextField lwpnX4;
+	private JTextField lwpnY4;
+	private JButton lwpnClear;
+	private JButton lwpnSquare;
 
 	/**
 	 * Launch the application.
@@ -159,10 +173,10 @@ public class JausCOP_GUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{338, 0, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 0, 26, 0, 0, 0, 0, 123, 0, 0, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.columnWidths = new int[]{338, 430, 203, 0};
+		gbl_contentPane.rowHeights = new int[]{0, 0, 26, 0, 0, 0, 0, 0, 123, 0, 0, 0};
+		gbl_contentPane.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
 		panelInitialization = new JPanel();
@@ -305,7 +319,7 @@ public class JausCOP_GUI extends JFrame {
 		scrollPane = new JScrollPane();
 		scrollPane.setAutoscrolls(true);
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
+		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
 		gbc_scrollPane.gridheight = 9;
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.gridx = 1;
@@ -316,6 +330,182 @@ public class JausCOP_GUI extends JFrame {
 		textOutputPane.setText("Gui Initialized...\r\nUSER ACTION REQUIRED: Set COP Jaus Address!");
 		scrollPane.setViewportView(textOutputPane);
 		textOutputPane.setEditable(false);
+		
+		panel = new JPanel();
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.gridheight = 3;
+		gbc_panel.fill = GridBagConstraints.BOTH;
+		gbc_panel.insets = new Insets(0, 0, 5, 0);
+		gbc_panel.gridx = 2;
+		gbc_panel.gridy = 1;
+		contentPane.add(panel, gbc_panel);
+		GridBagLayout gbl_panel = new GridBagLayout();
+		gbl_panel.columnWidths = new int[]{91, 83, 0};
+		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panel.setLayout(gbl_panel);
+		
+		lblSetWaypoints = new JLabel("Local Waypoint List (X,Y) (meters)");
+		GridBagConstraints gbc_lblSetWaypoints = new GridBagConstraints();
+		gbc_lblSetWaypoints.gridwidth = 2;
+		gbc_lblSetWaypoints.insets = new Insets(0, 0, 5, 0);
+		gbc_lblSetWaypoints.gridx = 0;
+		gbc_lblSetWaypoints.gridy = 0;
+		panel.add(lblSetWaypoints, gbc_lblSetWaypoints);
+		
+		lwpnX1 = new JTextField();
+		lwpnX1.setHorizontalAlignment(SwingConstants.CENTER);
+		lwpnX1.setText("-");
+		GridBagConstraints gbc_lwpnX1 = new GridBagConstraints();
+		gbc_lwpnX1.insets = new Insets(0, 0, 5, 5);
+		gbc_lwpnX1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lwpnX1.gridx = 0;
+		gbc_lwpnX1.gridy = 1;
+		panel.add(lwpnX1, gbc_lwpnX1);
+		lwpnX1.setColumns(10);
+		
+		lwpnY1 = new JTextField();
+		lwpnY1.setHorizontalAlignment(SwingConstants.CENTER);
+		lwpnY1.setText("-");
+		GridBagConstraints gbc_lwpnY1 = new GridBagConstraints();
+		gbc_lwpnY1.insets = new Insets(0, 0, 5, 0);
+		gbc_lwpnY1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lwpnY1.gridx = 1;
+		gbc_lwpnY1.gridy = 1;
+		panel.add(lwpnY1, gbc_lwpnY1);
+		lwpnY1.setColumns(10);
+		
+		lwpnX2 = new JTextField();
+		lwpnX2.setHorizontalAlignment(SwingConstants.CENTER);
+		lwpnX2.setText("-");
+		GridBagConstraints gbc_lwpnX2 = new GridBagConstraints();
+		gbc_lwpnX2.insets = new Insets(0, 0, 5, 5);
+		gbc_lwpnX2.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lwpnX2.gridx = 0;
+		gbc_lwpnX2.gridy = 2;
+		panel.add(lwpnX2, gbc_lwpnX2);
+		lwpnX2.setColumns(10);
+		
+		lwpnY2 = new JTextField();
+		lwpnY2.setHorizontalAlignment(SwingConstants.CENTER);
+		lwpnY2.setText("-");
+		GridBagConstraints gbc_lwpnY2 = new GridBagConstraints();
+		gbc_lwpnY2.insets = new Insets(0, 0, 5, 0);
+		gbc_lwpnY2.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lwpnY2.gridx = 1;
+		gbc_lwpnY2.gridy = 2;
+		panel.add(lwpnY2, gbc_lwpnY2);
+		lwpnY2.setColumns(10);
+		
+		lwpnX3 = new JTextField();
+		lwpnX3.setHorizontalAlignment(SwingConstants.CENTER);
+		lwpnX3.setText("-");
+		GridBagConstraints gbc_lwpnX3 = new GridBagConstraints();
+		gbc_lwpnX3.insets = new Insets(0, 0, 5, 5);
+		gbc_lwpnX3.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lwpnX3.gridx = 0;
+		gbc_lwpnX3.gridy = 3;
+		panel.add(lwpnX3, gbc_lwpnX3);
+		lwpnX3.setColumns(10);
+		
+		lwpnY3 = new JTextField();
+		lwpnY3.setHorizontalAlignment(SwingConstants.CENTER);
+		lwpnY3.setText("-");
+		GridBagConstraints gbc_lwpnY3 = new GridBagConstraints();
+		gbc_lwpnY3.insets = new Insets(0, 0, 5, 0);
+		gbc_lwpnY3.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lwpnY3.gridx = 1;
+		gbc_lwpnY3.gridy = 3;
+		panel.add(lwpnY3, gbc_lwpnY3);
+		lwpnY3.setColumns(10);
+		
+		lwpnX4 = new JTextField();
+		lwpnX4.setHorizontalAlignment(SwingConstants.CENTER);
+		lwpnX4.setText("-");
+		GridBagConstraints gbc_lwpnX4 = new GridBagConstraints();
+		gbc_lwpnX4.insets = new Insets(0, 0, 5, 5);
+		gbc_lwpnX4.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lwpnX4.gridx = 0;
+		gbc_lwpnX4.gridy = 4;
+		panel.add(lwpnX4, gbc_lwpnX4);
+		lwpnX4.setColumns(10);
+		
+		lwpnY4 = new JTextField();
+		lwpnY4.setHorizontalAlignment(SwingConstants.CENTER);
+		lwpnY4.setText("-");
+		GridBagConstraints gbc_lwpnY4 = new GridBagConstraints();
+		gbc_lwpnY4.insets = new Insets(0, 0, 5, 0);
+		gbc_lwpnY4.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lwpnY4.gridx = 1;
+		gbc_lwpnY4.gridy = 4;
+		panel.add(lwpnY4, gbc_lwpnY4);
+		lwpnY4.setColumns(10);
+		
+		lwpnX5 = new JTextField();
+		lwpnX5.setHorizontalAlignment(SwingConstants.CENTER);
+		lwpnX5.setText("-");
+		GridBagConstraints gbc_lwpnX5 = new GridBagConstraints();
+		gbc_lwpnX5.insets = new Insets(0, 0, 5, 5);
+		gbc_lwpnX5.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lwpnX5.gridx = 0;
+		gbc_lwpnX5.gridy = 5;
+		panel.add(lwpnX5, gbc_lwpnX5);
+		lwpnX5.setColumns(10);
+		
+		lwpnY5 = new JTextField();
+		lwpnY5.setHorizontalAlignment(SwingConstants.CENTER);
+		lwpnY5.setText("-");
+		GridBagConstraints gbc_lwpnY5 = new GridBagConstraints();
+		gbc_lwpnY5.insets = new Insets(0, 0, 5, 0);
+		gbc_lwpnY5.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lwpnY5.gridx = 1;
+		gbc_lwpnY5.gridy = 5;
+		panel.add(lwpnY5, gbc_lwpnY5);
+		lwpnY5.setColumns(10);
+		
+		lwpnClear = new JButton("Clear");
+		GridBagConstraints gbc_lwpnClear = new GridBagConstraints();
+		gbc_lwpnClear.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lwpnClear.insets = new Insets(0, 0, 0, 5);
+		gbc_lwpnClear.gridx = 0;
+		gbc_lwpnClear.gridy = 6;
+		panel.add(lwpnClear, gbc_lwpnClear);
+		lwpnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				lwpnX1.setText("-");
+				lwpnY1.setText("-");
+				lwpnX2.setText("-");
+				lwpnY2.setText("-");
+				lwpnX3.setText("-");
+				lwpnY3.setText("-");
+				lwpnX4.setText("-");
+				lwpnY4.setText("-");
+				lwpnX5.setText("-");
+				lwpnY5.setText("-");
+			}
+		});
+		
+		lwpnSquare = new JButton("Square");
+		GridBagConstraints gbc_lwpnSquare = new GridBagConstraints();
+		gbc_lwpnSquare.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lwpnSquare.gridx = 1;
+		gbc_lwpnSquare.gridy = 6;
+		panel.add(lwpnSquare, gbc_lwpnSquare);
+		lwpnSquare.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				lwpnX1.setText("5");
+				lwpnY1.setText("5");
+				lwpnX2.setText("5");
+				lwpnY2.setText("-5");
+				lwpnX3.setText("-5");
+				lwpnY3.setText("-5");
+				lwpnX4.setText("-5");
+				lwpnY4.setText("5");
+				lwpnX5.setText("0");
+				lwpnY5.setText("0");
+			}
+		});
 		
 		panelDiscovery = new JPanel();
 		panelDiscovery.setBorder(new TitledBorder(null, "Discovery Service", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -778,96 +968,169 @@ public class JausCOP_GUI extends JFrame {
 				seMsg.getBody().getSetElementSeq().getRequestIDRec().setRequestID(Short.parseShort(txtRequestID.getText()));
 				//Fill RequestID field in Body
 				ElementList elementList = new ElementList();
-				//Element List created to store ElementRecs
-				ElementRec element1 = new ElementRec();
-				ElementRec element2 = new ElementRec();
-				ElementRec element3 = new ElementRec();
-				ElementRec element4 = new ElementRec();
-				//ElementRecords
-				SetLocalWaypoint setLocalWaypoint1 = new SetLocalWaypoint();
-				SetLocalWaypoint setLocalWaypoint2 = new SetLocalWaypoint();
-				SetLocalWaypoint setLocalWaypoint3 = new SetLocalWaypoint();
-				SetLocalWaypoint setLocalWaypoint4 = new SetLocalWaypoint();
-				//Element Data will be SetLocalWaypoint message payload
-				element1.setElementUID(1);
-				element1.setPreviousUID(0);
-				element1.setNextUID(0);
-				setLocalWaypoint1.getBody().getLocalWaypointRec().setX(11);
-				setLocalWaypoint1.getBody().getLocalWaypointRec().setY(11);
-				//Element1 added
-				element2.setElementUID(2);
-				element2.setPreviousUID(1);
-				element2.setNextUID(0);
-				setLocalWaypoint2.getBody().getLocalWaypointRec().setX(12);
-				setLocalWaypoint2.getBody().getLocalWaypointRec().setY(-12);
-				//elementList.addElement(element2);
-				//Element2 added
-				element4.setElementUID(4);
-				element4.setPreviousUID(2);
-				element4.setNextUID(0);
-				setLocalWaypoint4.getBody().getLocalWaypointRec().setX(-14);
-				setLocalWaypoint4.getBody().getLocalWaypointRec().setY(14);
-				//elementList.addElement(element4);
-				//Element4 added
-				element3.setElementUID(3);
-				element3.setPreviousUID(2);
-				element3.setNextUID(4);
-				setLocalWaypoint3.getBody().getLocalWaypointRec().setX(-13);
-				setLocalWaypoint3.getBody().getLocalWaypointRec().setY(-13);
-				//elementList.addElement(element3);
-				//Element3 added
-				long bufsize; 
-				ByteBuffer buffer1;
-				ByteBuffer buffer2;
-				ByteBuffer buffer3;
-				ByteBuffer buffer4;
-				ElementData elementData1 = new ElementData();
-				ElementData elementData2 = new ElementData();
-				ElementData elementData3 = new ElementData();
-				ElementData elementData4 = new ElementData();
-				int pos;
-				//Instantiate byteBuffer
-				bufsize = setLocalWaypoint1.getSize();
-				buffer1 = ByteBuffer.allocate((int) bufsize);
-				buffer1.order(ByteOrder.LITTLE_ENDIAN);
-				buffer1.clear();
-				pos = 0; 
-				setLocalWaypoint1.encode(buffer1, pos);
+				//Create new elementList
 				
-				elementData1.set((short)0, buffer1.array().length, buffer1);
-				element1.setElementData(elementData1);
-				elementList.addElement(element1);
-				//Encode and add element1 data
-				bufsize = setLocalWaypoint2.getSize();
-				buffer2 = ByteBuffer.allocate((int) bufsize);
-				buffer2.order(ByteOrder.LITTLE_ENDIAN);
-				buffer2.clear();
-				pos = 0; 
-				setLocalWaypoint2.encode(buffer2, pos);
-				elementData2.set((short)0, buffer2.array().length, buffer2);
-				element2.setElementData(elementData2);
-				elementList.addElement(element2);
-				//Encode and add element2 data
-				bufsize = setLocalWaypoint4.getSize();
-				buffer4 = ByteBuffer.allocate((int) bufsize);
-				buffer4.order(ByteOrder.LITTLE_ENDIAN);
-				buffer4.clear();
-				pos = 0; 
-				setLocalWaypoint4.encode(buffer4, pos);
-				elementData4.set((short)0, buffer4.array().length, buffer4);
-				element4.setElementData(elementData4);
-				elementList.addElement(element4);
-				//Encode and add element4 data
-				bufsize = setLocalWaypoint3.getSize();
-				buffer3 = ByteBuffer.allocate((int) bufsize);
-				buffer3.order(ByteOrder.LITTLE_ENDIAN);
-				buffer3.clear();
-				pos = 0; 
-				setLocalWaypoint3.encode(buffer3, pos);
-				elementData3.set((short)0, buffer3.array().length, buffer3);
-				element3.setElementData(elementData3);
-				elementList.addElement(element3);
-				//Encode and add element3 data
+				
+//				ElementList elementList = new ElementList();
+//				//Element List created to store ElementRecs
+//				ElementRec element1 = new ElementRec();
+//				ElementRec element2 = new ElementRec();
+//				ElementRec element3 = new ElementRec();
+//				ElementRec element4 = new ElementRec();
+//				ElementRec element5 = new ElementRec();
+//				//ElementRecords
+//				SetLocalWaypoint setLocalWaypoint1 = new SetLocalWaypoint();
+//				SetLocalWaypoint setLocalWaypoint2 = new SetLocalWaypoint();
+//				SetLocalWaypoint setLocalWaypoint3 = new SetLocalWaypoint();
+//				SetLocalWaypoint setLocalWaypoint4 = new SetLocalWaypoint();
+//				SetLocalWaypoint setLocalWaypoint5 = new SetLocalWaypoint();
+//				//Element Data will be SetLocalWaypoint message payload
+//				element1.setElementUID(1);
+//				element1.setPreviousUID(0);
+//				element1.setNextUID(0);
+//				setLocalWaypoint1.getBody().getLocalWaypointRec().setX(11);
+//				setLocalWaypoint1.getBody().getLocalWaypointRec().setY(11);
+//				//Element1 added
+//				element2.setElementUID(2);
+//				element2.setPreviousUID(1);
+//				element2.setNextUID(0);
+//				setLocalWaypoint2.getBody().getLocalWaypointRec().setX(12);
+//				setLocalWaypoint2.getBody().getLocalWaypointRec().setY(-12);
+//				//elementList.addElement(element2);
+//				//Element2 added
+//				element4.setElementUID(4);
+//				element4.setPreviousUID(2);
+//				element4.setNextUID(0);
+//				setLocalWaypoint4.getBody().getLocalWaypointRec().setX(-14);
+//				setLocalWaypoint4.getBody().getLocalWaypointRec().setY(14);
+//				//elementList.addElement(element4);
+//				//Element4 added
+//				element3.setElementUID(3);
+//				element3.setPreviousUID(2);
+//				element3.setNextUID(4);
+//				setLocalWaypoint3.getBody().getLocalWaypointRec().setX(-13);
+//				setLocalWaypoint3.getBody().getLocalWaypointRec().setY(-13);
+//				//elementList.addElement(element3);
+//				//Element3 added
+//				long bufsize; 
+//				ByteBuffer buffer1;
+//				ByteBuffer buffer2;
+//				ByteBuffer buffer3;
+//				ByteBuffer buffer4;
+//				ElementData elementData1 = new ElementData();
+//				ElementData elementData2 = new ElementData();
+//				ElementData elementData3 = new ElementData();
+//				ElementData elementData4 = new ElementData();
+//				int pos;
+//				//Instantiate byteBuffer
+//				bufsize = setLocalWaypoint1.getSize();
+//				buffer1 = ByteBuffer.allocate((int) bufsize);
+//				buffer1.order(ByteOrder.LITTLE_ENDIAN);
+//				buffer1.clear();
+//				pos = 0; 
+//				setLocalWaypoint1.encode(buffer1, pos);
+//			
+//				elementData1.set((short)0, buffer1.array().length, buffer1);
+//				element1.setElementData(elementData1);
+//				elementList.addElement(element1);
+//				//Encode and add element1 data
+//				bufsize = setLocalWaypoint2.getSize();
+//				buffer2 = ByteBuffer.allocate((int) bufsize);
+//				buffer2.order(ByteOrder.LITTLE_ENDIAN);
+//				buffer2.clear();
+//				pos = 0; 
+//				setLocalWaypoint2.encode(buffer2, pos);
+//				elementData2.set((short)0, buffer2.array().length, buffer2);
+//				element2.setElementData(elementData2);
+//				elementList.addElement(element2);
+//				//Encode and add element2 data
+//				bufsize = setLocalWaypoint4.getSize();
+//				buffer4 = ByteBuffer.allocate((int) bufsize);
+//				buffer4.order(ByteOrder.LITTLE_ENDIAN);
+//				buffer4.clear();
+//				pos = 0; 
+//				setLocalWaypoint4.encode(buffer4, pos);
+//				elementData4.set((short)0, buffer4.array().length, buffer4);
+//				element4.setElementData(elementData4);
+//				elementList.addElement(element4);
+//				//Encode and add element4 data
+//				bufsize = setLocalWaypoint3.getSize();
+//				buffer3 = ByteBuffer.allocate((int) bufsize);
+//				buffer3.order(ByteOrder.LITTLE_ENDIAN);
+//				buffer3.clear();
+//				pos = 0; 
+//				setLocalWaypoint3.encode(buffer3, pos);
+//				elementData3.set((short)0, buffer3.array().length, buffer3);
+//				element3.setElementData(elementData3);
+//				elementList.addElement(element3);
+//				//Encode and add element3 data
+//				//ElementData encoded and placed into message
+//				seMsg.getBody().getSetElementSeq().setElementList(elementList);
+//				//Element List added to Message Body
+//				framework.StateMachine.sendJausMessage(seMsg, dest);
+//				SetLocalWaypoint tempForGUI = new SetLocalWaypoint();
+//				String containedWaypoint;
+//				//Send to Destination
+//				tempForGUI.decode(seMsg.getBody().getSetElementSeq().getElementList().getElement(0).getElementData().getData(), 0);
+//				containedWaypoint = "("+tempForGUI.getBody().getLocalWaypointRec().getX()+" , "+tempForGUI.getBody().getLocalWaypointRec().getY()+")";
+//				addOutputText("Element 1: "+containedWaypoint);
+//				tempForGUI.decode(seMsg.getBody().getSetElementSeq().getElementList().getElement(1).getElementData().getData(), 0);
+//				containedWaypoint = "("+tempForGUI.getBody().getLocalWaypointRec().getX()+" , "+tempForGUI.getBody().getLocalWaypointRec().getY()+")";
+//				addOutputText("Element 2: "+containedWaypoint);
+//				tempForGUI.decode(seMsg.getBody().getSetElementSeq().getElementList().getElement(2).getElementData().getData(), 0);
+//				containedWaypoint = "("+tempForGUI.getBody().getLocalWaypointRec().getX()+" , "+tempForGUI.getBody().getLocalWaypointRec().getY()+")";
+//				addOutputText("Element 3: "+containedWaypoint);
+//				tempForGUI.decode(seMsg.getBody().getSetElementSeq().getElementList().getElement(3).getElementData().getData(), 0);
+//				containedWaypoint = "("+tempForGUI.getBody().getLocalWaypointRec().getX()+" , "+tempForGUI.getBody().getLocalWaypointRec().getY()+")";
+//				addOutputText("Element 4: "+containedWaypoint);
+//				tempForGUI.decode(seMsg.getBody().getSetElementSeq().getElementList().getElement(4).getElementData().getData(), 0);
+//				containedWaypoint = "("+tempForGUI.getBody().getLocalWaypointRec().getX()+" , "+tempForGUI.getBody().getLocalWaypointRec().getY()+")";
+//				addOutputText("Element 5: "+containedWaypoint);
+//				tempForGUI.decode(seMsg.getBody().getSetElementSeq().getElementList().getElement(0).getElementData().getData(), 0);
+//				containedWaypoint = "("+tempForGUI.getBody().getLocalWaypointRec().getX()+" , "+tempForGUI.getBody().getLocalWaypointRec().getY()+")";
+//				addOutputText("Element 1: "+containedWaypoint);
+//				tempForGUI.decode(seMsg.getBody().getSetElementSeq().getElementList().getElement(1).getElementData().getData(), 0);
+//				containedWaypoint = "("+tempForGUI.getBody().getLocalWaypointRec().getX()+" , "+tempForGUI.getBody().getLocalWaypointRec().getY()+")";
+//				addOutputText("Element 2: "+containedWaypoint);
+//				tempForGUI.decode(seMsg.getBody().getSetElementSeq().getElementList().getElement(2).getElementData().getData(), 0);
+//				containedWaypoint = "("+tempForGUI.getBody().getLocalWaypointRec().getX()+" , "+tempForGUI.getBody().getLocalWaypointRec().getY()+")";
+//				addOutputText("Element 3: "+containedWaypoint);
+//				tempForGUI.decode(seMsg.getBody().getSetElementSeq().getElementList().getElement(3).getElementData().getData(), 0);
+//				containedWaypoint = "("+tempForGUI.getBody().getLocalWaypointRec().getX()+" , "+tempForGUI.getBody().getLocalWaypointRec().getY()+")";
+//				addOutputText("Element 4: "+containedWaypoint);
+//				tempForGUI.decode(seMsg.getBody().getSetElementSeq().getElementList().getElement(4).getElementData().getData(), 0);
+//				containedWaypoint = "("+tempForGUI.getBody().getLocalWaypointRec().getX()+" , "+tempForGUI.getBody().getLocalWaypointRec().getY()+")";
+//				addOutputText("Element 5: "+containedWaypoint);
+				
+				
+				int currentUID = 1;
+				
+				for(int i=0;i<5;i++){
+					if((i==1)&&!(lwpnX1.equals("-"))&&!(lwpnY1.equals("-"))){
+						addWaypointToList(Double.parseDouble(lwpnX1.getText()), Double.parseDouble(lwpnY1.getText()), currentUID, 0, currentUID-1, elementList);
+						addOutputText("Waypoint: " + (i+1) + "; Added as Element " + currentUID);
+						currentUID++;
+					}else if((i==2)&&!(lwpnX2.equals("-"))&&!(lwpnY2.equals("-"))){
+						addWaypointToList(Double.parseDouble(lwpnX2.getText()), Double.parseDouble(lwpnY2.getText()), currentUID, 0, currentUID-1, elementList);
+						addOutputText("Waypoint: " + (i+1) + "; Added as Element " + currentUID);
+						currentUID++;
+					}else if((i==3)&&!(lwpnX3.equals("-"))&&!(lwpnY3.equals("-"))){
+						addWaypointToList(Double.parseDouble(lwpnX3.getText()), Double.parseDouble(lwpnY3.getText()), currentUID, 0, currentUID-1, elementList);
+						addOutputText("Waypoint: " + (i+1) + "; Added as Element " + currentUID);
+						currentUID++;
+					}else if((i==4)&&!(lwpnX4.equals("-"))&&!(lwpnY4.equals("-"))){
+						addWaypointToList(Double.parseDouble(lwpnX4.getText()), Double.parseDouble(lwpnY4.getText()), currentUID, 0, currentUID-1, elementList);
+						addOutputText("Waypoint: " + (i+1) + "; Added as Element " + currentUID);
+						currentUID++;
+					}else if((i==5)&&!(lwpnX5.equals("-"))&&!(lwpnY5.equals("-"))){
+						addWaypointToList(Double.parseDouble(lwpnX5.getText()), Double.parseDouble(lwpnY5.getText()), currentUID, 0, currentUID-1, elementList);
+						addOutputText("Waypoint: " + (i+1) + "; Added as Element " + currentUID);
+						currentUID++;
+					}else{
+						addOutputText("Waypoint:" + (i+1) + "; Not added");
+					}
+				}
+				
 				//ElementData encoded and placed into message
 				seMsg.getBody().getSetElementSeq().setElementList(elementList);
 				//Element List added to Message Body
@@ -875,18 +1138,12 @@ public class JausCOP_GUI extends JFrame {
 				SetLocalWaypoint tempForGUI = new SetLocalWaypoint();
 				String containedWaypoint;
 				//Send to Destination
-				tempForGUI.decode(seMsg.getBody().getSetElementSeq().getElementList().getElement(0).getElementData().getData(), 0);
-				containedWaypoint = "("+tempForGUI.getBody().getLocalWaypointRec().getX()+" , "+tempForGUI.getBody().getLocalWaypointRec().getY()+")";
-				addOutputText("Element 1: "+containedWaypoint);
-				tempForGUI.decode(seMsg.getBody().getSetElementSeq().getElementList().getElement(1).getElementData().getData(), 0);
-				containedWaypoint = "("+tempForGUI.getBody().getLocalWaypointRec().getX()+" , "+tempForGUI.getBody().getLocalWaypointRec().getY()+")";
-				addOutputText("Element 2: "+containedWaypoint);
-				tempForGUI.decode(seMsg.getBody().getSetElementSeq().getElementList().getElement(2).getElementData().getData(), 0);
-				containedWaypoint = "("+tempForGUI.getBody().getLocalWaypointRec().getX()+" , "+tempForGUI.getBody().getLocalWaypointRec().getY()+")";
-				addOutputText("Element 3: "+containedWaypoint);
-				tempForGUI.decode(seMsg.getBody().getSetElementSeq().getElementList().getElement(3).getElementData().getData(), 0);
-				containedWaypoint = "("+tempForGUI.getBody().getLocalWaypointRec().getX()+" , "+tempForGUI.getBody().getLocalWaypointRec().getY()+")";
-				addOutputText("Element 4: "+containedWaypoint);
+				
+				for(int i=0; i<seMsg.getBody().getSetElementSeq().getElementList().getSize(); i++){
+					tempForGUI.decode(seMsg.getBody().getSetElementSeq().getElementList().getElement(i).getElementData().getData(), 0);
+					containedWaypoint = "("+tempForGUI.getBody().getLocalWaypointRec().getX()+" , "+tempForGUI.getBody().getLocalWaypointRec().getY()+")";
+					addOutputText("Element" + (i+1) + ": " + containedWaypoint);
+				}	
 				
 				addOutputText("SENT: SetElement Message (Dest: "+ dest.getSubsystemID() + "." + dest.getNodeID()+"."+dest.getComponentID()+")");
 				//Print notification to GUI
@@ -985,7 +1242,8 @@ public class JausCOP_GUI extends JFrame {
 				     Integer executeUID =  Integer.parseInt(textExecuteUID.getText());  
 				     elMsg.getBody().getExecuteListRec().setElementUID(executeUID);
 				}catch(Exception ie){  
-					 //Nothing set speed only
+					 
+					//Nothing set speed only
 				}
 				//IF UID is specified fill, else assume only speed adjusment is wanted
 				elMsg.getBody().getExecuteListRec().setSpeed(Double.parseDouble(textExecuteSpeed.getText()));
@@ -1140,6 +1398,8 @@ public class JausCOP_GUI extends JFrame {
 		
 		btnClearoutputpane = new JButton("ClearOutputPane");
 		GridBagConstraints gbc_btnClearoutputpane = new GridBagConstraints();
+		gbc_btnClearoutputpane.insets = new Insets(0, 0, 5, 5);
+		gbc_btnClearoutputpane.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnClearoutputpane.gridx = 1;
 		gbc_btnClearoutputpane.gridy = 9;
 		contentPane.add(btnClearoutputpane, gbc_btnClearoutputpane);
@@ -1161,6 +1421,36 @@ public class JausCOP_GUI extends JFrame {
 	
 	public static void addOutputText(String string) {
 			textOutputPane.setText(textOutputPane.getText() + "\n" + string);
+	}
+	public static void addWaypointToList(Double x, Double y,  Integer elementUID, Integer nextUID, Integer prevUID, ElementList elementList){
+		long bufsize; 
+		ByteBuffer buffer;
+		int pos;
+		
+		//Fill RequestID field in Body
+		//Element List created to store ElementRecs
+		ElementRec element = new ElementRec();
+		//ElementRecords
+		SetLocalWaypoint setLocalWaypoint = new SetLocalWaypoint();
+		//Element Data will be SetLocalWaypoint message payload
+		element.setElementUID(elementUID);
+		element.setPreviousUID(prevUID);
+		element.setNextUID(nextUID);
+		setLocalWaypoint.getBody().getLocalWaypointRec().setX(x);
+		setLocalWaypoint.getBody().getLocalWaypointRec().setY(y);
+		//Element added
+		ElementData elementData = new ElementData();
+		//Instantiate byteBuffer
+		bufsize = setLocalWaypoint.getSize();
+		buffer = ByteBuffer.allocate((int) bufsize);
+		buffer.order(ByteOrder.LITTLE_ENDIAN);
+		buffer.clear();
+		pos = 0; 
+		setLocalWaypoint.encode(buffer, pos);
+		elementData.set((short)0, buffer.array().length, buffer);
+		element.setElementData(elementData);
+		elementList.addElement(element);
+		//Encode and add element data
 	}
 
 }
