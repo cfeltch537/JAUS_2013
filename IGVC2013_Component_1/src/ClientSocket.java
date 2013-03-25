@@ -29,7 +29,7 @@ public class ClientSocket {//SocketClient
 	//String host,int port
 	{
 		/**Define a host **/
-		String host = "192.168.32.64";
+		String host = "192.168.33.73";
 		/**Define a port**/
 		int port = 19998;
 
