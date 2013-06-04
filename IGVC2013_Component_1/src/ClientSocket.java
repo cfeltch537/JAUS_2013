@@ -21,7 +21,7 @@ public class ClientSocket {//SocketClient
 	private LinkedList<Object> setExecuteList = new LinkedList<Object>();
 	private LinkedList<Object> setExecuteSpeed = new LinkedList<Object>();
 	private Object[] RobData;
-	private Object o;;
+	private Object o;
 	
 	ClientSocket(){}
 	
@@ -29,7 +29,7 @@ public class ClientSocket {//SocketClient
 	//String host,int port
 	{
 		/**Define a host **/
-		String host = "192.168.33.73";
+		String host = "localhost";//"192.168.35.102";
 		/**Define a port**/
 		int port = 19998;
 

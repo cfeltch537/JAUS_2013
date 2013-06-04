@@ -235,6 +235,7 @@ public void resetTravelSpeedAction()
 
 public void setElementAction(SetElement msg)
 {
+	JausGUI.socket.JausDataRequest();
 	JausGUI.addOutputText("LWD: Entered SetElementAction");
 	Integer nextUID; //UID of element intended to be after setElement (0 for tail element)
 	Integer previousUID; //UID of element intended to be before setElement (0 for head element)
@@ -387,7 +388,7 @@ public boolean isValidElementRequest(SetElement msg)
 
 public boolean waypointExists(QueryLocalWaypoint msg)
 {
-	if(!activeWaypointListPosition.equals(0)){
+	if(localWaypointLinkedList.size()!=0){
 		return true;
 	}else{
 		return false;

@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.text.DecimalFormat;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -139,6 +140,7 @@ public class JausCOP_GUI extends JFrame {
 	private JTextField lwpnY4;
 	private JButton lwpnClear;
 	private JButton lwpnSquare;
+	public static DecimalFormat threeDec = new DecimalFormat("0.000");
 
 	/**
 	 * Launch the application.
@@ -1106,23 +1108,23 @@ public class JausCOP_GUI extends JFrame {
 				int currentUID = 1;
 				
 				for(int i=0;i<5;i++){
-					if((i==1)&&!(lwpnX1.equals("-"))&&!(lwpnY1.equals("-"))){
+					if((i==0)&&!(lwpnX1.getText().equals("-"))&&!(lwpnY1.getText().equals("-"))){
 						addWaypointToList(Double.parseDouble(lwpnX1.getText()), Double.parseDouble(lwpnY1.getText()), currentUID, 0, currentUID-1, elementList);
 						addOutputText("Waypoint: " + (i+1) + "; Added as Element " + currentUID);
 						currentUID++;
-					}else if((i==2)&&!(lwpnX2.equals("-"))&&!(lwpnY2.equals("-"))){
+					}else if((i==1)&&!(lwpnX2.getText().equals("-"))&&!(lwpnY2.getText().equals("-"))){
 						addWaypointToList(Double.parseDouble(lwpnX2.getText()), Double.parseDouble(lwpnY2.getText()), currentUID, 0, currentUID-1, elementList);
 						addOutputText("Waypoint: " + (i+1) + "; Added as Element " + currentUID);
 						currentUID++;
-					}else if((i==3)&&!(lwpnX3.equals("-"))&&!(lwpnY3.equals("-"))){
+					}else if((i==2)&&!(lwpnX3.getText().equals("-"))&&!(lwpnY3.getText().equals("-"))){
 						addWaypointToList(Double.parseDouble(lwpnX3.getText()), Double.parseDouble(lwpnY3.getText()), currentUID, 0, currentUID-1, elementList);
 						addOutputText("Waypoint: " + (i+1) + "; Added as Element " + currentUID);
 						currentUID++;
-					}else if((i==4)&&!(lwpnX4.equals("-"))&&!(lwpnY4.equals("-"))){
+					}else if((i==3)&&!(lwpnX4.getText().equals("-"))&&!(lwpnY4.getText().equals("-"))){
 						addWaypointToList(Double.parseDouble(lwpnX4.getText()), Double.parseDouble(lwpnY4.getText()), currentUID, 0, currentUID-1, elementList);
 						addOutputText("Waypoint: " + (i+1) + "; Added as Element " + currentUID);
 						currentUID++;
-					}else if((i==5)&&!(lwpnX5.equals("-"))&&!(lwpnY5.equals("-"))){
+					}else if((i==4)&&!(lwpnX5.getText().equals("-"))&&!(lwpnY5.getText().equals("-"))){
 						addWaypointToList(Double.parseDouble(lwpnX5.getText()), Double.parseDouble(lwpnY5.getText()), currentUID, 0, currentUID-1, elementList);
 						addOutputText("Waypoint: " + (i+1) + "; Added as Element " + currentUID);
 						currentUID++;
@@ -1139,9 +1141,9 @@ public class JausCOP_GUI extends JFrame {
 				String containedWaypoint;
 				//Send to Destination
 				
-				for(int i=0; i<seMsg.getBody().getSetElementSeq().getElementList().getSize(); i++){
+				for(int i=0; i<seMsg.getBody().getSetElementSeq().getElementList().getNumberOfElements(); i++){
 					tempForGUI.decode(seMsg.getBody().getSetElementSeq().getElementList().getElement(i).getElementData().getData(), 0);
-					containedWaypoint = "("+tempForGUI.getBody().getLocalWaypointRec().getX()+" , "+tempForGUI.getBody().getLocalWaypointRec().getY()+")";
+					containedWaypoint = "("+threeDec.format(tempForGUI.getBody().getLocalWaypointRec().getX())+" , "+threeDec.format(tempForGUI.getBody().getLocalWaypointRec().getY())+")";
 					addOutputText("Element" + (i+1) + ": " + containedWaypoint);
 				}	
 				
