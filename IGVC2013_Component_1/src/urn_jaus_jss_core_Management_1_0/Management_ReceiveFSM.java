@@ -29,7 +29,7 @@ public class Management_ReceiveFSM extends StateMachine{
 	Transport_ReceiveFSM pTransport_ReceiveFSM;
 	Events_ReceiveFSM pEvents_ReceiveFSM;
 	AccessControl_ReceiveFSM pAccessControl_ReceiveFSM;
-
+	static String stateString;
     static Management_ReceiveFSMContext context;
 
     //SUPER IMPORTANT NOTE: This service WILL be implemented diffenently that in AS5710
@@ -92,24 +92,25 @@ public void SendAction(String arg0, Receive.Body.ReceiveRec transportData)
 	String sourceString = source.getSubsystemID() + "." + source.getNodeID() + "." + source.getComponentID();
 	// JAUS Address of received message source
 
-	JausGUI.addOutputText("State: "+JausGUI.txtManagementState.getText()+")");
+	//JausGUI.addOutputText("State: "+JausGUI.txtManagementState.getText()+")");
 	
 	if(arg0.equals("ReportStatus")){
 		ReportStatus rsMsg = new ReportStatus();
-//		//Instantiate Message
-//		if("Management_ReceiveFSM_SM.Receiving_Ready_NotControlled_StateA_Init".equals(getStateName_nonStatic())){
-//			rsMsg.getBody().getReportStatusRec().setStatus((short) 0);
-//		}else if("Management_ReceiveFSM_SM.Receiving_Ready_Controlled_StateB_Ready".equals(getStateName_nonStatic())){
-//			rsMsg.getBody().getReportStatusRec().setStatus((short) 1);
-//		}else if("Management_ReceiveFSM_SM.Receiving_Ready_Controlled_StateB_Standby".equals(getStateName_nonStatic())){
-//			rsMsg.getBody().getReportStatusRec().setStatus((short) 2);
-//		}else if("Management_ReceiveFSM_SM.Receiving_Ready_NotControlled_StateA_Standby".equals(getStateName_nonStatic())){
-//			rsMsg.getBody().getReportStatusRec().setStatus((short) 2);
-//		}else if("Management_ReceiveFSM_SM.Receiving_Ready_NotControlled_StateA_Shutdown".equals(getStateName_nonStatic())){
-//			rsMsg.getBody().getReportStatusRec().setStatus((short) 3);
-//		}else{
-//			JausGUI.addOutputText("MGT: ERROR: State: "+getStateName()+")");
-//		}// 4 and 5 (failure and emergency are not implemented)	
+		
+    	JausGUI.addOutputText("StateString "+ stateString);
+
+		//Instantiate Message
+		if(stateString.equals("Initialize")){
+			rsMsg.getBody().getReportStatusRec().setStatus((short) 0);
+		}else if(stateString.equals("Ready")){
+			rsMsg.getBody().getReportStatusRec().setStatus((short) 1);
+		}else if(stateString.equals("Standby")){
+			rsMsg.getBody().getReportStatusRec().setStatus((short) 2);
+		}else if(stateString.equals("Shutdown")){
+			rsMsg.getBody().getReportStatusRec().setStatus((short) 3);
+		}else{
+			JausGUI.addOutputText("MGT: ERROR: State: "+stateString+")");
+		}// 4 and 5 (failure and emergency are not implemented)	
 		 //Fill body with Controller and AuthorityCode
 
 		sendJausMessage(rsMsg,source);
@@ -118,6 +119,7 @@ public void SendAction(String arg0, Receive.Body.ReceiveRec transportData)
 	}else{
 		JausGUI.addOutputText("MGT:ERROR: arg0: " + arg0);
 	}
+	JausGUI.btnUpdateMgtState.doClick();
 }
 
 public void SendAction(String arg0, String arg1)

@@ -7,6 +7,7 @@ import java.nio.ByteOrder;
 import framework.transport.JausRouter;
 import framework.transport.JausAddress;
 import framework.internalEvents.*;
+import framework.internalEvents.Receive_1_0.Body.ReceiveRec;
 import framework.StateMachine;
 import framework.messages.Message;
 import statemap.*;
@@ -68,7 +69,7 @@ public class Discovery_ReceiveFSM extends StateMachine{
 
 	public void PublishServicesAction(RegisterServices msg, Receive.Body.ReceiveRec transportData)
 {
-	/// Insert User Code HERE
+	/// Services Not Needed
 }
 
 public void SendAction(String arg0, Receive.Body.ReceiveRec transportData)
@@ -76,19 +77,20 @@ public void SendAction(String arg0, Receive.Body.ReceiveRec transportData)
 	JausAddress source = new JausAddress(transportData.getSrcSubsystemID(), transportData.getSrcNodeID(), transportData.getSrcComponentID());
 	String sourceString = source.getSubsystemID() + "." + source.getNodeID() + "." + source.getComponentID();
 	// Determine source from transportData
-	if(arg0.equals("ReportIdentification")){ //Does not specify ENUM (Sys, Sub, Node, Comp??); JUST FOR TESTING PURPOSES: Assume Component
-		 ReportIdentification riMsg = new ReportIdentification();
-		 //Instantiate Message
-		 riMsg.getBody().getReportIdentificationRec().setQueryType((short) 4); //This reports only the component configuration (for testing purposes)
-		 riMsg.getBody().getReportIdentificationRec().setType(60001);
-		 riMsg.getBody().getReportIdentificationRec().setIdentification("York College of Pennsylvania IGVC Robot JAUS Component");
-		 //Fill Body
-		 sendJausMessage(riMsg, source);
-		 //Send Message
-		JausGUI.addOutputText("DSC: SENT: "+arg0+" Message (Dest: " + sourceString + "; QueryType: 4; Type: 60001 (Component); Identification: 'York College of Pennsylvania IGVC Robot JAUS Component')");
-		JausGUI.addOutputText("DSC: NOTE* " +arg0+ "ONLY FOR TESTING PURPOSES");
-		//In JAUS Competition the CLIENT (this) will QueryIdentification; Not ReportIdentification
-		//This will be tested against; 
+	
+	if(arg0.equals("ReportIdentification")){ //Does not specify ENUM (Sys, Sub, Node, Comp); JUST FOR TESTING PURPOSES: Assume Component
+//		 ReportIdentification riMsg = new ReportIdentification();
+//		 //Instantiate Message
+//		 riMsg.getBody().getReportIdentificationRec().setQueryType((short) 4); //This reports only the component configuration (for testing purposes)
+//		 riMsg.getBody().getReportIdentificationRec().setType(60001);
+//		 riMsg.getBody().getReportIdentificationRec().setIdentification("York College of Pennsylvania IGVC Robot JAUS Component");
+//		 //Fill Body
+//		 sendJausMessage(riMsg, source);
+//		 //Send Message
+//		JausGUI.addOutputText("DSC: SENT: "+arg0+" Message (Dest: " + sourceString + "; QueryType: 4; Type: 60001 (Component); Identification: 'York College of Pennsylvania IGVC Robot JAUS Component')");
+//		JausGUI.addOutputText("DSC: NOTE* " +arg0+ "ONLY FOR TESTING PURPOSES");
+//		//In JAUS Competition the CLIENT (this) will QueryIdentification; Not ReportIdentification
+//		//This will be tested against; 
 	}else if(arg0.equals("ReportConfiguration")){
 //		ReportConfiguration rcMsg = new ReportConfiguration();
 //		//Instantiate Message
@@ -198,6 +200,68 @@ public void handleReportIdentificationAction(ReportIdentification msg, Receive.B
 	JausGUI.periodicQuery = false;
 	JausGUI.setLED(JausGUI.led_ReportedIdentification, "greenON");
 	JausGUI.addOutputText("DSC: ReportIdentification Message Recieved (Source: " + transportData.getSrcComponentID() + "." + transportData.getSrcNodeID() + "." + transportData.getSrcComponentID()+ ")");
+}
+
+
+public void ReplyToQueryIdentification(QueryIdentification msg, ReceiveRec transportData) {
+	JausAddress source = new JausAddress(transportData.getSrcSubsystemID(), transportData.getSrcNodeID(), transportData.getSrcComponentID());
+	String sourceString = source.getSubsystemID() + "." + source.getNodeID() + "." + source.getComponentID();
+	Integer queryType = (int) msg.getBody().getQueryIdentificationRec().getQueryType();
+	// Determine source from transportData
+	
+	if(queryType.equals(1)){ //System Identification
+		ReportIdentification riMsg = new ReportIdentification();
+		//Instantiate Message
+		riMsg.getBody().getReportIdentificationRec().setQueryType((short) 1); 
+		riMsg.getBody().getReportIdentificationRec().setType(10001);
+		riMsg.getBody().getReportIdentificationRec().setIdentification("YCP IGVC Robot 2013- Robot Downey Jr.");
+		//Fill Body
+		sendJausMessage(riMsg, source);
+		//Send Message
+		JausGUI.addOutputText("DSC: SENT: ReportMessage (Dest: " + sourceString + "; QueryType: 1");
+		JausGUI.addOutputText("DSC: NOTE* ReportMessage ONLY FOR TESTING PURPOSES");
+		//In JAUS Competition the CLIENT (this) will QueryIdentification; Not ReportIdentification
+		//This will be tested against; 
+	}else if(queryType.equals(2)){
+		ReportIdentification riMsg = new ReportIdentification();
+		//Instantiate Message
+		riMsg.getBody().getReportIdentificationRec().setQueryType((short) 2);
+		riMsg.getBody().getReportIdentificationRec().setType(60001);
+		riMsg.getBody().getReportIdentificationRec().setIdentification("YCP IGVC Robot 2013- Subsystem");
+		//Fill Body
+		sendJausMessage(riMsg, source);
+		//Send Message
+		JausGUI.addOutputText("DSC: SENT: ReportMessage (Dest: " + sourceString + "; QueryType: 2");
+		JausGUI.addOutputText("DSC: NOTE* ReportMessage ONLY FOR TESTING PURPOSES");
+		//In JAUS Competition the CLIENT (this) will QueryIdentification; Not ReportIdentification
+		//This will be tested against; 
+	}else if(queryType.equals(3)){
+		ReportIdentification riMsg = new ReportIdentification();
+		//Instantiate Message
+		riMsg.getBody().getReportIdentificationRec().setQueryType((short) 3); 
+		riMsg.getBody().getReportIdentificationRec().setType(40001);
+		riMsg.getBody().getReportIdentificationRec().setIdentification("YCP IGVC Robot 2013 - Node 1");
+		//Fill Body
+		sendJausMessage(riMsg, source);
+		//Send Message
+		JausGUI.addOutputText("DSC: SENT: ReportMessage (Dest: " + sourceString + "; QueryType: 3");
+		JausGUI.addOutputText("DSC: NOTE* ReportMessae ONLY FOR TESTING PURPOSES");
+		//In JAUS Competition the CLIENT (this) will QueryIdentification; Not ReportIdentification
+		//This will be tested against; 
+	}else if(queryType.equals(4)){
+		ReportIdentification riMsg = new ReportIdentification();
+		//Instantiate Message
+		riMsg.getBody().getReportIdentificationRec().setQueryType((short) 4); 
+		riMsg.getBody().getReportIdentificationRec().setType(60001);
+		riMsg.getBody().getReportIdentificationRec().setIdentification("YCP IGVC Robot 2013 - JAUS Component 1");
+		//Fill Body
+		sendJausMessage(riMsg, source);
+		//Send Message
+		JausGUI.addOutputText("DSC: SENT: ReportAMessage (Dest: " + sourceString + "; QueryType: 4");
+		JausGUI.addOutputText("DSC: NOTE* ReportMessage ONLY FOR TESTING PURPOSES");
+		//In JAUS Competition the CLIENT (this) will QueryIdentification; Not ReportIdentification
+		//This will be tested against; 
+	}
 }
 
 

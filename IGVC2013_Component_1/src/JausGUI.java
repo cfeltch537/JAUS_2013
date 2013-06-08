@@ -183,6 +183,7 @@ public final class JausGUI extends JFrame {
 		panelInitialization.setLayout(gbl_panelInitialization);
 		
 		btnSetAddress = new JButton("Set Address");
+		btnSetAddress.setEnabled(false);
 		GridBagConstraints gbc_btnSetAddress = new GridBagConstraints();
 		gbc_btnSetAddress.gridwidth = 2;
 		gbc_btnSetAddress.insets = new Insets(0, 0, 0, 5);
@@ -197,6 +198,7 @@ public final class JausGUI extends JFrame {
 		});
 		
 		textSubsytemID = new JTextField();
+		textSubsytemID.setEnabled(false);
 		GridBagConstraints gbc_textSubsytemID = new GridBagConstraints();
 		gbc_textSubsytemID.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textSubsytemID.insets = new Insets(0, 0, 0, 5);
@@ -216,6 +218,7 @@ public final class JausGUI extends JFrame {
 		panelInitialization.add(label, gbc_label);
 		
 		textNodeID = new JTextField();
+		textNodeID.setEnabled(false);
 		GridBagConstraints gbc_textNodeID = new GridBagConstraints();
 		gbc_textNodeID.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textNodeID.insets = new Insets(0, 0, 0, 5);
@@ -236,6 +239,7 @@ public final class JausGUI extends JFrame {
 		panelInitialization.add(label_1, gbc_label_1);
 		
 		textComponentID = new JTextField();
+		textComponentID.setEnabled(false);
 		GridBagConstraints gbc_textComponentID = new GridBagConstraints();
 		gbc_textComponentID.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textComponentID.gridx = 6;

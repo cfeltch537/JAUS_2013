@@ -8,6 +8,8 @@
 package src.urn_jaus_jss_core_Management_1_0;
 
 import framework.internalEvents.*;
+import src.JausGUI;
+import src.urn_jaus_jss_core_AccessControl_1_0.AccessControl_ReceiveFSM;
 import src.urn_jaus_jss_core_Management_1_0.InternalEvents.*;
 import src.urn_jaus_jss_core_Management_1_0.Messages.*;
 import java.io.PrintStream;
@@ -340,6 +342,16 @@ public class Management_ReceiveFSMContext
         _transition = "ReceiveTransition";
         getState().ReceiveTransition(this, msg, transportData);
         _transition = "";
+        
+        // Used to avoid problem with not being able to read state
+        if(AccessControl_ReceiveFSM.controllingComponentID.equals(transportData.getSrcComponentID())
+        		&&AccessControl_ReceiveFSM.controllingNodeID.equals(transportData.getSrcNodeID())
+        		&&AccessControl_ReceiveFSM.controllingSubsystemID.equals(transportData.getSrcSubsystemID())){
+        	Management_ReceiveFSM.stateString = "Ready";
+        	JausGUI.addOutputText("State => "+ Management_ReceiveFSM.stateString +" (Ready)");
+        }       
+        //----------------------------
+        
         return;
     }
 
@@ -356,6 +368,16 @@ public class Management_ReceiveFSMContext
         _transition = "ReceiveTransition";
         getState().ReceiveTransition(this, msg, transportData);
         _transition = "";
+        
+        // Used to avoid problem with not being able to read state
+        if(AccessControl_ReceiveFSM.controllingComponentID.equals(transportData.getSrcComponentID())
+        		&&AccessControl_ReceiveFSM.controllingNodeID.equals(transportData.getSrcNodeID())
+        		&&AccessControl_ReceiveFSM.controllingSubsystemID.equals(transportData.getSrcSubsystemID())){
+        	Management_ReceiveFSM.stateString = "Shutdown";
+        	JausGUI.addOutputText("State => "+ Management_ReceiveFSM.stateString +" (Shutdown)");
+        }       
+        //----------------------------
+        
         return;
     }
 
@@ -364,6 +386,16 @@ public class Management_ReceiveFSMContext
         _transition = "ReceiveTransition";
         getState().ReceiveTransition(this, msg, transportData);
         _transition = "";
+        
+     // Used to avoid problem with not being able to read state
+        if(AccessControl_ReceiveFSM.controllingComponentID.equals(transportData.getSrcComponentID())
+        		&&AccessControl_ReceiveFSM.controllingNodeID.equals(transportData.getSrcNodeID())
+        		&&AccessControl_ReceiveFSM.controllingSubsystemID.equals(transportData.getSrcSubsystemID())){
+        	Management_ReceiveFSM.stateString = "Standby";
+        	JausGUI.addOutputText("State => "+ Management_ReceiveFSM.stateString +" (Standby)");
+        }       
+        //----------------------------
+        
         return;
     }
 

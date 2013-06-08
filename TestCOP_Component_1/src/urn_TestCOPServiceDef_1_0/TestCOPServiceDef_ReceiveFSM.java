@@ -273,24 +273,30 @@ public void handleReportServicesAction(ReportServices msg, Receive.Body.ReceiveR
 
 public void handleReportStatusAction(ReportStatus msg, Receive.Body.ReceiveRec transportData)
 {
-	String status = new String();
-	Short msgStatus = msg.getBody().getReportStatusRec().getStatus();
+	if(lastMsgID==null||!lastMsgID.equals(msg.getID())){ //Check that this message id not a repeat
 	
-	if(msgStatus.equals((short) 0)){
-		status = "INIT";
-	}else if(msgStatus.equals((short) 1)){
-		status = "READY";
-	}else if(msgStatus.equals((short) 2)){
-		status = "STANDBY";
-	}else if(msgStatus.equals((short) 3)){
-		status = "SHUTDOWN";
-	}else if(msgStatus.equals((short) 4)){
-		status = "FAILURE";
-	}else if(msgStatus.equals((short) 5)){
-		status = "EMERGENCY";
+		String status = new String();
+		Short msgStatus = msg.getBody().getReportStatusRec().getStatus();
+		
+		if(msgStatus.equals((short) 0)){
+			status = "INIT";
+		}else if(msgStatus.equals((short) 1)){
+			status = "READY";
+		}else if(msgStatus.equals((short) 2)){
+			status = "STANDBY";
+		}else if(msgStatus.equals((short) 3)){
+			status = "SHUTDOWN";
+		}else if(msgStatus.equals((short) 4)){
+			status = "FAILURE";
+		}else if(msgStatus.equals((short) 5)){
+			status = "EMERGENCY";
+		}
+		
+		JausCOP_GUI.addOutputText("RECIEVED: ReportStatus Message (Source: " + source + "; Status: " + status + "; Reserved: "+msg.getBody().getReportStatusRec().getReserved());
 	}
-	
-	JausCOP_GUI.addOutputText("RECIEVED: ReportStatus Message (Source: " + source + "; Status: " + status + "; Reserved: "+msg.getBody().getReportStatusRec().getReserved());
+	//Handle Message Body Data; Print variable size contents to GUI
+	lastMsgID = msg.getID();
+	//Set Message ID to prevent duplicate notifications
 }
 
 public void handleReportTravelSpeedAction(ReportTravelSpeed msg, Receive.Body.ReceiveRec transportData)

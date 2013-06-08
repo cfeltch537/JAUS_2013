@@ -29,7 +29,8 @@ public class ClientSocket {//SocketClient
 	//String host,int port
 	{
 		/**Define a host **/
-		String host = "localhost";//"192.168.35.102";
+		//String host = "localhost";		//Same Machine
+		String host = "169.254.87.180";		//Not Same Machine
 		/**Define a port**/
 		int port = 19998;
 

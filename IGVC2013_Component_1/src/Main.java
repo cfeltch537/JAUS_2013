@@ -36,9 +36,6 @@ public class Main {
 	    	// Instantiate the component and start it.
 	    	IGVC2013_Component cmpt = new IGVC2013_Component(Integer.parseInt(JausGUI.textSubsytemID.getText()), Short.parseShort(JausGUI.textNodeID.getText()), Short.parseShort(JausGUI.textComponentID.getText()));
 //			// Catch exit signals
-//        	Signal.handle(new Signal("INT"), handler);
-//        	Signal.handle(new Signal("TERM"), handler);
-//        	Signal.handle(new Signal("ABRT"), handler);
 	
 			// Start the component and the services
 			cmpt.startComponent();

@@ -513,7 +513,7 @@ public class Discovery_ReceiveFSMContext
             context.clearState();
             try
             {
-                ctxt.SendAction("ReportIdentification", transportData);
+                ctxt.ReplyToQueryIdentification(msg, transportData);
             }
             finally
             {
