@@ -30,7 +30,8 @@ public class ClientSocket {//SocketClient
 	{
 		/**Define a host **/
 		//String host = "localhost";		//Same Machine
-		String host = "169.254.87.180";		//Not Same Machine
+		String host = "169.254.87.180";	//Not Same Machine
+		JausGUI.addOutputText("Host IP:" + host);
 		/**Define a port**/
 		int port = 19998;
 
