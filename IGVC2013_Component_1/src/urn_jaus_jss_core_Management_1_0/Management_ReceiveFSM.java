@@ -29,7 +29,7 @@ public class Management_ReceiveFSM extends StateMachine{
 	Transport_ReceiveFSM pTransport_ReceiveFSM;
 	Events_ReceiveFSM pEvents_ReceiveFSM;
 	AccessControl_ReceiveFSM pAccessControl_ReceiveFSM;
-	static String stateString;
+	static String stateString = "Standby";
     static Management_ReceiveFSMContext context;
 
     //SUPER IMPORTANT NOTE: This service WILL be implemented diffenently that in AS5710

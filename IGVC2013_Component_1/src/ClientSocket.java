@@ -29,15 +29,16 @@ public class ClientSocket {//SocketClient
 	//String host,int port
 	{
 		/**Define a host **/
-		//String host = "localhost";		//Same Machine
-		String host = "169.254.87.180";	//Not Same Machine
-		JausGUI.addOutputText("Host IP:" + host);
+		String host = "localhost";		//Same Machine
+		//String host = "10.10.73.184";	//Not Same Machine
 		/**Define a port**/
 		int port = 19998;
 
 		StringBuffer instr = new StringBuffer();
 		
 		System.out.println("SocketClient initialized");
+		System.out.println("Host IP:" + host);
+
 
 		try{//how to request a socket and establishing a connection
 			/**obtain an address object of the server*/

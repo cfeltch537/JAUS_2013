@@ -96,20 +96,22 @@ public void SendAction(String arg0, Receive.Body.ReceiveRec transportData)
 			
 			rlpMsg.getBody().getLocalPoseRec().setX(x); // ROB ROB ROB: This should be filled with actual change from local reference
 			rlpMsg.getBody().getLocalPoseRec().setY(y);
-			src.urn_jaus_jss_mobility_LocalPoseSensor_1_0.Messages.ReportLocalPose.Body.LocalPoseRec.TimeStamp time = new src.urn_jaus_jss_mobility_LocalPoseSensor_1_0.Messages.ReportLocalPose.Body.LocalPoseRec.TimeStamp();
-			Calendar now = Calendar.getInstance();
-			// Instantiate "Calendar"
-			time.setDay(now.get(Calendar.DAY_OF_MONTH));
-			time.setHour(now.get(Calendar.HOUR_OF_DAY));
-			time.setMinutes(now.get(Calendar.MINUTE));
-			time.setSeconds(now.get(Calendar.SECOND));
-			time.setMilliseconds(now.get(Calendar.MILLISECOND));
-			//Fill TimeStamp
-			rlpMsg.getBody().getLocalPoseRec().setTimeStamp(time);
+			rlpMsg.getBody().getLocalPoseRec().setYaw(yaw);
+//			src.urn_jaus_jss_mobility_LocalPoseSensor_1_0.Messages.ReportLocalPose.Body.LocalPoseRec.TimeStamp time = new src.urn_jaus_jss_mobility_LocalPoseSensor_1_0.Messages.ReportLocalPose.Body.LocalPoseRec.TimeStamp();
+//			Calendar now = Calendar.getInstance();
+//			// Instantiate "Calendar"
+//			time.setDay(now.get(Calendar.DAY_OF_MONTH));
+//			time.setHour(now.get(Calendar.HOUR_OF_DAY));
+//			time.setMinutes(now.get(Calendar.MINUTE));
+//			time.setSeconds(now.get(Calendar.SECOND));
+//			time.setMilliseconds(now.get(Calendar.MILLISECOND));
+//			//Fill TimeStamp
+//			rlpMsg.getBody().getLocalPoseRec().setTimeStamp(time);
 			// Fill body with change in x, y, yaw from reference
 			sendJausMessage(rlpMsg, source);
 			// Send message to source
-			JausGUI.addOutputText("LPS: SENT: ReportLocalPose Message (Dest: " + sourceString + "; X: " + rlpMsg.getBody().getLocalPoseRec().getX() + "; Y: " + rlpMsg.getBody().getLocalPoseRec().getY() + "; Time Stamp (D:H:M:S:mS): "+time.getDay()+":"+time.getHour()+":"+time.getMinutes()+":"+time.getSeconds()+":"+time.getMilliseconds()+ ")");
+			JausGUI.addOutputText("LPS: SENT: ReportLocalPose Message (Dest: " + sourceString + "; X: " + rlpMsg.getBody().getLocalPoseRec().getX() + "; Y: " + rlpMsg.getBody().getLocalPoseRec().getY());
+			//+ "; Time Stamp (D:H:M:S:mS): "+time.getDay()+":"+time.getHour()+":"+time.getMinutes()+":"+time.getSeconds()+":"+time.getMilliseconds()+ ")");
 		}else{
 			JausGUI.addOutputText("LPS: INVALID ARGUMENT arg0 (" + arg0 + ") in SendAction(String arg0, Receive.Body.ReceiveRec transportData)");
 			//If arg0 not found error message is sent

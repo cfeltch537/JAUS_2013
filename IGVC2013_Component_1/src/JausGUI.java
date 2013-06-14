@@ -206,7 +206,7 @@ public final class JausGUI extends JFrame {
 		gbc_textSubsytemID.gridy = 0;
 		panelInitialization.add(textSubsytemID, gbc_textSubsytemID);
 		textSubsytemID.setHorizontalAlignment(SwingConstants.CENTER);
-		textSubsytemID.setText("111");
+		textSubsytemID.setText("112");
 		textSubsytemID.setColumns(4);
 		
 		JLabel label = new JLabel(".");
